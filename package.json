@@ -1,0 +1,21 @@
+{
+  "name": "dpop",
+  "version": "1.0.0",
+  "description": "DPOP is a decentralized platform designed to enable democratic organizations to operate effectively in both online and offline environments.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
