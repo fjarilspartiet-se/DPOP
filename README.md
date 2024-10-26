@@ -56,6 +56,127 @@ Early development - setting up project infrastructure.
    npm run dev
    ```
 
+## Files & Folder Tree
+
+.
+├── config
+├── coverage
+│   ├── clover.xml
+│   ├── coverage-final.json
+│   ├── lcov.info
+│   └── lcov-report
+│       ├── base.css
+│       ├── block-navigation.js
+│       ├── favicon.png
+│       ├── index.html
+│       ├── lib
+│       │   ├── db.ts.html
+│       │   └── index.html
+│       ├── prettify.css
+│       ├── prettify.js
+│       ├── sort-arrow-sprite.png
+│       ├── sorter.js
+│       └── utils
+│           ├── format.ts.html
+│           └── index.html
+├── docs
+│   ├── architecture
+│   │   ├── core
+│   │   │   ├── dpop-architecture.md
+│   │   │   └── dpop-mvp.md
+│   │   ├── decisions
+│   │   └── diagrams
+│   ├── concepts
+│   │   ├── ethics
+│   │   ├── governance
+│   │   ├── party
+│   │   │   ├── basis-for-unity.md
+│   │   │   ├── foundation.md
+│   │   │   └── initial-outline.md
+│   │   └── strategy
+│   │       ├── international-strategy.md
+│   │       ├── religious-diversity.md
+│   │       └── research-development.md
+│   ├── dev
+│   │   ├── guides
+│   │   ├── journal
+│   │   └── procedures
+│   ├── planning
+│   │   ├── development-plan.md
+│   │   └── phase0-detailed-plan.md
+│   ├── specs
+│   │   ├── api
+│   │   ├── features
+│   │   │   ├── digital-platform.md
+│   │   │   ├── flexible-governance.md
+│   │   │   └── platform-specification.md
+│   │   ├── integration
+│   │   │   ├── action-plans.md
+│   │   │   └── swedish-integration.md
+│   │   ├── operations
+│   │   │   ├── communication-strategy.md
+│   │   │   ├── education-framework.md
+│   │   │   ├── ethics-framework.md
+│   │   │   ├── financial-framework.md
+│   │   │   ├── legal-framework.md
+│   │   │   └── quality-assurance.md
+│   │   └── security
+│   │       ├── anti-corruption.md
+│   │       └── security-framework.md
+│   └── user
+│       ├── faq
+│       ├── guides
+│       └── tutorials
+├── jest.config.mjs
+├── jest.setup.js
+├── jest.setup.ts
+├── LICENSE
+├── next.config.mjs
+├── package.json
+├── package-lock.json
+├── packages
+│   ├── cli
+│   └── sdk
+├── prisma
+│   ├── migrations
+│   │   ├── 20241026165640_initial_core_schema
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   ├── schema.prisma
+│   ├── seed.ts
+│   └── tsconfig.json
+├── public
+│   ├── fonts
+│   ├── images
+│   └── locales
+├── README.md
+├── scripts
+│   ├── deploy
+│   ├── dev
+│   └── setup
+├── src
+│   ├── api
+│   ├── components
+│   ├── lib
+│   │   └── db.ts
+│   ├── models
+│   ├── pages
+│   │   └── index.tsx
+│   ├── services
+│   ├── styles
+│   └── utils
+│       ├── format.test.ts
+│       └── format.ts
+├── tests
+│   ├── e2e
+│   ├── fixtures
+│   ├── integration
+│   ├── unit
+│   │   └── Member.test.ts
+│   └── utils
+│       └── test-utils.tsx
+└── tsconfig.json
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and development process.
