@@ -1,176 +1,121 @@
 // prisma/schema.prisma
 
-generator client {
-  provider = "prisma-client-js"
+// Previous generator and datasource blocks remain the same...
+
+// Core Fluid Movement Models
+
+enum LifeStage {
+  FLOWER      // Visitor from different ideology/background
+  EGG         // New member
+  LARVAE      // Learning stage
+  PUPA        // Reflection/passive stage
+  BUTTERFLY   // Active member
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+enum ButterflyRole {
+  FRIEND      // Regular participant
+  CONTRIBUTOR // Active content/resource creator
+  GUIDE       // Helps and mentors others
+  STEWARD     // Maintains meadow spaces
 }
 
-// Core models for MVP
-
-model Member {
-  id            String    @id @default(cuid())
-  email         String    @unique
-  name          String
-  passwordHash  String
-  role          Role      @default(MEMBER)
-  status        Status    @default(ACTIVE)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  lastLoginAt   DateTime?
+model MeadowParticipant {
+  id          String        @id @default(cuid())
+  meadowId    String
+  memberId    String?       // Optional - for registered members
+  nickname    String?       // Optional - for anonymous participants
+  lifeStage   LifeStage    @default(FLOWER)
+  butterflyRole ButterflyRole? // Only for BUTTERFLY stage
+  joinedAt    DateTime      @default(now())
+  lastActive  DateTime      @default(now())
+  
+  // Stage progression tracking
+  stageHistory StageTransition[]
   
   // Relations
-  messages      Message[]     @relation("SentMessages")
-  documents     Document[]    @relation("OwnedDocuments")
-  votes         Vote[]
-  eventRsvps    EventRSVP[]
+  meadow      Meadow        @relation(fields: [meadowId], references: [id])
+  member      Member?       @relation(fields: [memberId], references: [id])
 
-  @@map("members")
+  @@map("meadow_participants")
 }
 
-model Message {
-  id          String    @id @default(cuid())
-  senderId    String
-  content     String
-  type        MessageType
-  priority    Priority   @default(NORMAL)
-  status      MessageStatus @default(SENT)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  // Relations
-  sender      Member    @relation("SentMessages", fields: [senderId], references: [id])
+model StageTransition {
+  id          String     @id @default(cuid())
+  participantId String
+  fromStage   LifeStage
+  toStage     LifeStage
+  notes       String?
+  transitionedAt DateTime @default(now())
   
-  @@map("messages")
+  // Relations
+  participant MeadowParticipant @relation(fields: [participantId], references: [id])
+
+  @@map("stage_transitions")
 }
 
-model Document {
-  id          String    @id @default(cuid())
+model MeadowResource {
+  id          String      @id @default(cuid())
+  meadowId    String
+  type        ResourceType
   title       String
-  content     String
-  ownerId     String
-  version     Int       @default(1)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  content     Json
+  // Modified access levels to match life stages
+  minStage    LifeStage  @default(FLOWER)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 
   // Relations
-  owner       Member    @relation("OwnedDocuments", fields: [ownerId], references: [id])
+  meadow      Meadow      @relation(fields: [meadowId], references: [id])
 
-  @@map("documents")
+  @@map("meadow_resources")
 }
 
-model Proposal {
-  id          String    @id @default(cuid())
-  title       String
-  description String
-  status      ProposalStatus @default(DRAFT)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  closedAt    DateTime?
+// Enums for Fluid Movement
 
-  // Relations
-  votes       Vote[]
-
-  @@map("proposals")
-}
-
-model Vote {
-  id          String    @id @default(cuid())
-  memberId    String
-  proposalId  String
-  choice      VoteChoice
-  createdAt   DateTime  @default(now())
-
-  // Relations
-  member      Member    @relation(fields: [memberId], references: [id])
-  proposal    Proposal  @relation(fields: [proposalId], references: [id])
-
-  @@unique([memberId, proposalId])
-  @@map("votes")
-}
-
-model Event {
-  id          String    @id @default(cuid())
-  title       String
-  description String
-  startTime   DateTime
-  endTime     DateTime
-  location    String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  // Relations
-  rsvps       EventRSVP[]
-
-  @@map("events")
-}
-
-model EventRSVP {
-  id          String    @id @default(cuid())
-  memberId    String
-  eventId     String
-  status      RSVPStatus
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  // Relations
-  member      Member    @relation(fields: [memberId], references: [id])
-  event       Event     @relation(fields: [eventId], references: [id])
-
-  @@unique([memberId, eventId])
-  @@map("event_rsvps")
-}
-
-// Enums
-
-enum Role {
-  ADMIN
-  MEMBER
-  GUEST
-}
-
-enum Status {
+enum MeadowStatus {
+  PLANNED
   ACTIVE
-  INACTIVE
-  SUSPENDED
+  PAUSED
+  COMPLETED
+  ARCHIVED
 }
 
-enum MessageType {
-  DIRECT
-  ANNOUNCEMENT
-  SYSTEM
+enum MeadowType {
+  GATHERING    // Regular open gathering
+  WORKSHOP     // Learning focused
+  ACTION       // Specific action or campaign
+  CELEBRATION  // Community celebration
 }
 
-enum Priority {
-  LOW
-  NORMAL
-  HIGH
-  URGENT
+enum ParticipantRole {
+  VISITOR      // Anonymous/first-time participant
+  FRIEND       // Regular participant
+  CONTRIBUTOR  // Active contributor
+  GUIDE        // Experienced member who helps others
 }
 
-enum MessageStatus {
-  SENT
-  DELIVERED
-  READ
+enum StewardRole {
+  HOST         // Manages meadow gatherings
+  MENTOR       // Guides new participants
+  GUARDIAN     // Ensures safety and positive atmosphere
 }
 
-enum ProposalStatus {
-  DRAFT
-  VOTING
-  CLOSED
+enum DiscussionStatus {
+  ACTIVE
+  RESOLVED
+  ARCHIVED
 }
 
-enum VoteChoice {
-  YES
-  NO
-  ABSTAIN
+enum ResourceType {
+  GUIDE        // How-to guides
+  STORY        // Movement stories and experiences
+  TOOL         // Tools and templates
+  MEDIA        // Images, videos, etc.
 }
 
-enum RSVPStatus {
-  YES
-  NO
-  MAYBE
+enum AccessLevel {
+  PUBLIC       // Available to all
+  FRIEND       // Available to registered friends
+  CONTRIBUTOR  // Available to active contributors
+  STEWARD      // Available to stewards only
 }

@@ -1,19 +1,37 @@
 # DPOP (Digital Party Operations Platform)
 
-DPOP is a decentralized platform designed to enable democratic organizations to operate effectively in both online and offline environments.
+DPOP is a decentralized platform designed to support both political parties and social movements, enabling effective democratic operations in both online and offline environments. Initially developed for Unity Forward (Enhet Framåt) in Sweden, but designed to be universally applicable.
 
-## Current Status
+## Core Concepts
 
-Early development - setting up project infrastructure.
+- **Dual Support**: Integrated support for both structured party operations and fluid movement activities
+- **Natural Growth**: Inspired by butterfly metamorphosis stages for participant development
+- **Inclusive Design**: Universal accessibility without special adaptations for different groups
+- **Hybrid Operations**: Seamless integration of digital and physical activities
 
 ## Features (Planned)
 
+### Shared Infrastructure
 - Decentralized, P2P-based platform
 - Secure member management and communication
-- Democratic decision-making tools
 - Document management with offline support
 - Event coordination and resource management
-- Flexible governance model support
+
+### Party-Specific Features
+- Formal decision-making tools
+- Committee management
+- Campaign coordination
+- Policy development support
+
+### Movement-Specific Features
+- Fluid participation support
+- "Meadow" gathering coordination
+- Initiative management
+- Resource sharing platform
+
+## Current Status
+
+Early development - establishing core infrastructure and implementing initial features for both party and movement operations.
 
 ## Tech Stack
 
@@ -35,8 +53,8 @@ Early development - setting up project infrastructure.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/dpop.git
-   cd dpop
+   git clone https://github.com/BjornKennethHolmstrom/DPOP.git
+   cd DPOP
    ```
 
 2. Install dependencies:
@@ -56,9 +74,17 @@ Early development - setting up project infrastructure.
    npm run dev
    ```
 
+## Documentation
+
+- `/docs/movement/` - Movement-specific documentation
+- `/docs/party/` - Party-specific documentation
+- `/docs/shared/` - Shared infrastructure documentation
+
+Documentation is available in Swedish (primary) and English (translation).
+
 ## Files & Folder Tree
 
-.
+DPOP
 ├── config
 ├── coverage
 │   ├── clover.xml
@@ -82,27 +108,46 @@ Early development - setting up project infrastructure.
 ├── docs
 │   ├── architecture
 │   │   ├── core
+│   │   │   ├── decisions
+│   │   │   ├── diagrams
 │   │   │   ├── dpop-architecture.md
+│   │   │   ├── dpop-dual-architecture.md
 │   │   │   └── dpop-mvp.md
-│   │   ├── decisions
-│   │   └── diagrams
+│   │   ├── movement
+│   │   └── party
 │   ├── concepts
-│   │   ├── ethics
-│   │   ├── governance
+│   │   ├── movement
 │   │   ├── party
 │   │   │   ├── basis-for-unity.md
 │   │   │   ├── foundation.md
 │   │   │   └── initial-outline.md
-│   │   └── strategy
-│   │       ├── international-strategy.md
-│   │       ├── religious-diversity.md
-│   │       └── research-development.md
+│   │   └── shared
 │   ├── dev
 │   │   ├── guides
 │   │   ├── journal
 │   │   └── procedures
+│   ├── movement
+│   │   ├── sv
+│   │   │   ├── äng
+│   │   │   │   ├── aktiviteter.md
+│   │   │   │   ├── ansökningsexempel.md
+│   │   │   │   ├── ansökningsmallar.md
+│   │   │   │   ├── organisationsguide.md
+│   │   │   │   └── setup-checklist-sv.md
+│   │   │   ├── mall.md
+│   │   │   ├── organisation.md
+│   │   │   └── stadier.md
+│   │   └── translations
+│   │       └── en
+│   │           ├── core-concepts.md
+│   │           ├── meadow
+│   │           │   ├── activity-guide.md
+│   │           │   ├── organization-guide.md
+│   │           │   └── setup-checklist.md
+│   │           └── stages.md
 │   ├── planning
 │   │   ├── development-plan.md
+│   │   ├── modified-development-plan.md
 │   │   └── phase0-detailed-plan.md
 │   ├── specs
 │   │   ├── api
@@ -113,6 +158,7 @@ Early development - setting up project infrastructure.
 │   │   ├── integration
 │   │   │   ├── action-plans.md
 │   │   │   └── swedish-integration.md
+│   │   ├── movement
 │   │   ├── operations
 │   │   │   ├── communication-strategy.md
 │   │   │   ├── education-framework.md
@@ -123,6 +169,13 @@ Early development - setting up project infrastructure.
 │   │   └── security
 │   │       ├── anti-corruption.md
 │   │       └── security-framework.md
+│   ├── strategy
+│   │   ├── movement
+│   │   ├── party
+│   │   │   ├── international-strategy.md
+│   │   │   ├── religious-diversity.md
+│   │   │   └── research-development.md
+│   │   └── shared
 │   └── user
 │       ├── faq
 │       ├── guides
@@ -155,27 +208,67 @@ Early development - setting up project infrastructure.
 │   ├── dev
 │   └── setup
 ├── src
-│   ├── api
-│   ├── components
+│   ├── core
+│   │   ├── constants
+│   │   ├── types
+│   │   │   └── organization.ts
+│   │   └── utils
 │   ├── lib
 │   │   └── db.ts
 │   ├── models
+│   ├── movement
+│   │   ├── components
+│   │   │   └── Navigation
+│   │   │       └── MovementNav.tsx
+│   │   ├── hooks
+│   │   ├── services
+│   │   │   └── index.ts
+│   │   └── utils
 │   ├── pages
-│   │   └── index.tsx
-│   ├── services
-│   ├── styles
-│   └── utils
-│       ├── format.test.ts
-│       └── format.ts
+│   │   ├── api
+│   │   │   ├── movement
+│   │   │   └── party
+│   │   ├── index.tsx
+│   │   ├── movement
+│   │   └── party
+│   ├── party
+│   │   ├── components
+│   │   │   └── Navigation
+│   │   │       └── PartyNav.tsx
+│   │   ├── hooks
+│   │   ├── services
+│   │   │   └── index.ts
+│   │   └── utils
+│   ├── shared
+│   │   ├── components
+│   │   │   └── Layout
+│   │   │       └── DualModeLayout.tsx
+│   │   ├── context
+│   │   ├── hooks
+│   │   ├── layouts
+│   │   └── utils
+│   │       ├── format.test.ts
+│   │       └── format.ts
+│   └── styles
 ├── tests
-│   ├── e2e
-│   ├── fixtures
-│   ├── integration
-│   ├── unit
-│   │   └── Member.test.ts
+│   ├── core
+│   ├── movement
+│   │   └── services
+│   │       └── initiatives.test.ts
+│   ├── party
+│   │   └── services
+│   │       └── voting.test.ts
+│   ├── shared
+│   │   ├── e2e
+│   │   ├── fixtures
+│   │   ├── integration
+│   │   └── unit
+│   │       └── Member.test.ts
 │   └── utils
 │       └── test-utils.tsx
-└── tsconfig.json
+├── tsconfig.json
+└── types
+
 
 ## Contributing
 
