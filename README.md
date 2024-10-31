@@ -4,6 +4,9 @@ DPOP is a decentralized platform designed to support both political parties and 
 
 ## Core Concepts
 
+- **Flexible Organization**: Support for fluid, app-based political engagement with minimal formal structure
+- **Spontaneous Engagement**: Tools for impromptu meetings, initiatives, and group formation
+- **Cross-Platform Integration**: Seamless connection with various social platforms and communication tools
 - **Dual Support**: Integrated support for both structured party operations and fluid movement activities
 - **Natural Growth**: Inspired by butterfly metamorphosis stages for participant development
 - **Inclusive Design**: Universal accessibility without special adaptations for different groups
@@ -11,8 +14,28 @@ DPOP is a decentralized platform designed to support both political parties and 
 
 ## Features (Planned)
 
+### Core Platform
+- Decentralized, P2P-based system
+- Real-time party updates and voting
+- Spontaneous meeting organization
+- Cross-platform group management
+- Resource sharing and coordination
+
+### Engagement Support
+- Simple proposal submission
+- Flexible voting mechanisms
+- Impromptu meeting tools
+- Group formation support
+- Multi-platform integration
+
+### Technical Foundation
+- Robust security framework
+- Privacy-preserving design
+- Offline-first architecture
+- Cross-platform compatibility
+- API-driven integration
+
 ### Shared Infrastructure
-- Decentralized, P2P-based platform
 - Secure member management and communication
 - Document management with offline support
 - Event coordination and resource management
