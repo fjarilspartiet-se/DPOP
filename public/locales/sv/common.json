@@ -1,0 +1,163 @@
+{
+  "nav": {
+    "party": "Parti",
+    "movement": "Rörelse",
+    "signIn": "Logga in",
+    "language": {
+      "sv": "Svenska",
+      "en": "English",
+      "switchTo": "Byt till {language}"
+    }
+  },
+  "party": {
+    "menu": {
+      "title": "Partimeny",
+      "dashboard": "Översikt",
+      "proposals": "Förslag",
+      "committees": "Kommittéer",
+      "members": "Medlemmar",
+      "resources": "Resurser"
+    },
+    "dashboard": {
+      "title": "Partiöversikt",
+      "welcome": "Välkommen tillbaka! Här är den senaste aktiviteten.",
+      "activeMembers": "Aktiva medlemmar",
+      "activeProposals": "Aktiva förslag",
+      "upcomingEvents": "Kommande event",
+      "activeVotes": "Aktiva omröstningar",
+      "recentProposals": "Senaste förslagen",
+      "alerts": "Viktiga meddelanden",
+      "votes": {
+        "title": "Röster",
+        "endDate": "Slutdatum",
+        "voteButton": "Rösta",
+        "hasVoted": "Du har röstat"
+      },
+      "proposals": {
+        "likes": "Gilla",
+        "comments": "Kommentarer",
+        "author": "Författare",
+        "date": "Datum"
+      },
+      "events": {
+        "location": "Plats",
+        "time": "Tid",
+        "participants": "Deltagare",
+        "register": "Anmäl dig",
+        "unregister": "Avanmäl",
+        "maxParticipants": "Max deltagare",
+        "physical": "Fysiskt möte",
+        "digital": "Digitalt möte",
+        "hybrid": "Hybridmöte"
+      },
+      "alerts": {
+        "noMessages": "Inga nya meddelanden",
+        "dismiss": "Avfärda",
+        "markAsRead": "Markera som läst",
+        "title": "Viktiga meddelanden",
+        "types": {
+          "info": "Information",
+          "warning": "Varning",
+          "action": "Åtgärd krävs",
+          "success": "Framgång"
+        }
+      }
+    }
+  },
+  "common": {
+    "viewAll": "Visa alla",
+    "loading": "Laddar...",
+    "error": "Något gick fel",
+    "retry": "Försök igen",
+    "save": "Spara",
+    "cancel": "Avbryt",
+    "edit": "Redigera",
+    "delete": "Ta bort",
+    "confirm": "Bekräfta",
+    "dateTime": {
+      "today": "Idag",
+      "tomorrow": "Imorgon",
+      "yesterday": "Igår"
+    },
+    "endDate": "Slutdatum"
+  },
+  "welcome": {
+    "title": "Välkommen till DPOP {{mode}}",
+    "description": "Detta är en platshållare för huvudinnehållet. Layouten anpassas baserat på valt läge.",
+    "modes": {
+      "party": "partiläge",
+      "movement": "rörelseläge"
+    }
+  },
+  "movement": {
+    "menu": {
+      "title": "Rörelsemeny",
+      "dashboard": "Översikt",
+      "meadows": "Ängar",
+      "initiatives": "Initiativ",
+      "community": "Gemenskap",
+      "journey": "Resa",
+      "resources": "Resurser"
+    },
+    "dashboard": {
+      "title": "Rörelseöversikt",
+      "welcome": "Välkommen till rörelsen! Här är den senaste aktiviteten.",
+      "activeMeadows": "Aktiva ängar",
+      "activeInitiatives": "Aktiva initiativ",
+      "communityMembers": "Gemenskapsmedlemmar",
+      "completedJourneys": "Genomförda resor",
+      
+      "meadowsTitle": "Ängar",
+      "meadowHost": "Värd",
+      "meadowAttend": "Delta",
+      "meadowUnattend": "Avanmäl",
+      "meadowType": {
+        "planned": "Planerad",
+        "spontaneous": "Spontan"
+      },
+      "meadowStatus": {
+        "upcoming": "Kommande",
+        "active": "Aktiv",
+        "completed": "Avslutad"
+      },
+
+      "initiativesTitle": "Initiativ",
+      "initiativeStage": {
+        "seed": "Frö",
+        "growing": "Växande",
+        "blooming": "Blomstrande"
+      },
+      "initiativeSupport": "Stöd",
+      "initiativeUnsupport": "Sluta stödja",
+      "initiativeParticipants": "Deltagare",
+
+      "communityTitle": "Gemenskap",
+      "lastActive": "Senast aktiv",
+      "following": "Följer",
+      "follow": "Följ",
+      "memberStages": {
+        "egg": "Ägg",
+        "larvae": "Larv",
+        "pupa": "Puppa",
+        "butterfly": "Fjäril"
+      },
+      "contributions": "Bidrag",
+      "specialties": "Specialiteter",
+
+      "journeyTitle": "Transformationsresa",
+      "journeyTypes": {
+        "personal": "Personlig",
+        "collective": "Kollektiv"
+      },
+      "journeyProgress": "Framsteg",
+      "nextMilestone": "Nästa milstolpe",
+      "completed": "Genomfört",
+      "inProgress": "Pågående",
+      "viewDetails": "Visa detaljer",
+
+      "loadMore": "Ladda fler",
+      "noResults": "Inga resultat att visa",
+      "errorLoading": "Kunde inte ladda data"
+    }
+  }
+}

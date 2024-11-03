@@ -1,6 +1,6 @@
 # DPOP (Digital Party Operations Platform)
 
-DPOP is a decentralized platform designed to support both political parties and social movements, enabling effective democratic operations in both online and offline environments. Initially developed for Unity Forward (Enhet Framåt) in Sweden, but designed to be universally applicable.
+DPOP is a decentralized platform designed to support both political parties and social movements, enabling effective democratic operations in both online and offline environments. Initially developed for Fjärilspartiet in Sweden, but designed to be universally applicable.
 
 ## Core Concepts
 
@@ -54,7 +54,16 @@ DPOP is a decentralized platform designed to support both political parties and 
 
 ## Current Status
 
-Early development - establishing core infrastructure and implementing initial features for both party and movement operations.
+Version 0.2.0 - Implementing core features:
+- ✅ Dual-mode dashboard (Party/Movement)
+- ✅ Language persistence (Swedish/English)
+- ✅ Dark/Light theme support
+- ✅ Responsive layout
+- 🚧 Authentication system (In progress)
+- 🚧 DPOP core features (In progress)
+- 📅 P2P functionality (Planned)
+
+The platform currently supports basic navigation and view switching between party and movement modes, with persistent user preferences and localization support. Development is focused on implementing core features while maintaining the flexibility to support both structured party operations and fluid movement activities.
 
 ## Tech Stack
 

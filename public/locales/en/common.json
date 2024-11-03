@@ -1,0 +1,163 @@
+{
+  "nav": {
+    "party": "Party",
+    "movement": "Movement",
+    "signIn": "Sign In",
+    "language": {
+      "sv": "Svenska",
+      "en": "English",
+      "switchTo": "Switch to {language}"
+    }
+  },
+  "party": {
+    "menu": {
+      "title": "Party Menu",
+      "dashboard": "Dashboard",
+      "proposals": "Proposals",
+      "committees": "Committees",
+      "members": "Members",
+      "resources": "Resources"
+    },
+    "dashboard": {
+      "title": "Party Overview",
+      "welcome": "Welcome back! Here's the latest activity.",
+      "activeMembers": "Active Members",
+      "activeProposals": "Active Proposals",
+      "upcomingEvents": "Upcoming Events",
+      "activeVotes": "Active Votes",
+      "recentProposals": "Recent Proposals",
+      "alerts": "Important Messages",
+      "votes": {
+        "title": "Votes",
+        "endDate": "End Date",
+        "voteButton": "Vote",
+        "hasVoted": "You have voted"
+      },
+      "proposals": {
+        "likes": "Likes",
+        "comments": "Comments",
+        "author": "Author",
+        "date": "Date"
+      },
+      "events": {
+        "location": "Location",
+        "time": "Time",
+        "participants": "Participants",
+        "register": "Register",
+        "unregister": "Unregister",
+        "maxParticipants": "Max participants",
+        "physical": "Physical meeting",
+        "digital": "Digital meeting",
+        "hybrid": "Hybrid meeting"
+      },
+      "alerts": {
+        "noMessages": "No new messages",
+        "dismiss": "Dismiss",
+        "markAsRead": "Mark as read",
+        "title": "Important messages",
+        "types": {
+          "info": "Information",
+          "warning": "Warning",
+          "action": "Action required",
+          "success": "Success"
+        }
+      }
+    }
+  },
+  "common": {
+    "viewAll": "View all",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "dateTime": {
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "yesterday": "Yesterday"
+    },
+    "endDate": "End date"
+  },
+  "welcome": {
+    "title": "Welcome to DPOP {{mode}}",
+    "description": "This is a placeholder for the main content. The layout adapts based on the selected mode.",
+    "modes": {
+      "party": "party mode",
+      "movement": "movement mode"
+    }
+  },
+  "movement": {
+    "menu": {
+      "title": "Movement menu",
+      "dashboard": "Overview",
+      "meadows": "Meadows",
+      "initiatives": "Initiatives",
+      "community": "Community",
+      "journey": "Journey",
+      "resources": "Resources"
+    },
+    "dashboard": {
+      "title": "Movement overview",
+      "welcome": "Welcome to the movement! Here is the latest activity.",
+      "activeMeadows": "Active meadows",
+      "activeInitiatives": "Active iniatives",
+      "communityMembers": "Community members",
+      "completedJourneys": "Completed journeys",
+      
+      "meadowsTitle": "Meadows",
+      "meadowHost": "Host",
+      "meadowAttend": "Attend",
+      "meadowUnattend": "Unattend",
+      "meadowType": {
+        "planned": "Planned",
+        "spontaneous": "Spontaneous"
+      },
+      "meadowStatus": {
+        "upcoming": "Upcoming",
+        "active": "Active",
+        "completed": "Completed"
+      },
+
+      "initiativesTitle": "Initiatives",
+      "initiativeStage": {
+        "seed": "Seed",
+        "growing": "Growing",
+        "blooming": "Blooming"
+      },
+      "initiativeSupport": "Support",
+      "initiativeUnsupport": "Unsupport",
+      "initiativeParticipants": "Participants",
+
+      "communityTitle": "Community",
+      "lastActive": "Last active",
+      "following": "Following",
+      "follow": "Follow",
+      "memberStages": {
+        "egg": "Egg",
+        "larvae": "Larvae",
+        "pupa": "Pupa",
+        "butterfly": "Butterfly"
+      },
+      "contributions": "Contribution",
+      "specialties": "Specialities",
+
+      "journeyTitle": "Transformation journey",
+      "journeyTypes": {
+        "personal": "Personal",
+        "collective": "Collective"
+      },
+      "journeyProgress": "Progress",
+      "nextMilestone": "Next milestone",
+      "completed": "Completed",
+      "inProgress": "In progress",
+      "viewDetails": "View details",
+
+      "loadMore": "Load more",
+      "noResults": "No results to show",
+      "errorLoading": "Error loading data"
+    }
+  }
+}

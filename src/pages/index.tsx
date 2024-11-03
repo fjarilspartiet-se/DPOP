@@ -1,9 +1,19 @@
-// src/pages/index.tsx
+import type { GetStaticProps, NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import DualModeLayout from '../shared/components/Layout/DualModeLayout';
 
-export default function Home() {
+const Home: NextPage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <h1 className="text-4xl font-bold">DPOP</h1>
-    </div>
+    <DualModeLayout />
   );
-}
+};
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'sv', ['common'])),
+    },
+  };
+};
+
+export default Home;
