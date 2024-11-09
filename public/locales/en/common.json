@@ -159,5 +159,108 @@
       "noResults": "No results to show",
       "errorLoading": "Error loading data"
     }
+  },
+  "auth": {
+    "name": "Full name",
+    "signIn": "Sign in to your account",
+    "email": "Email address",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "signInButton": "Sign in",
+    "signIn": {
+      "title": "Sign in to your account",
+      "description": "Choose your preferred sign in method",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "register": "Register here",
+      "orContinueWith": "Or continue with",
+      "continueWithGoogle": "Continue with Google",
+      "continueWithGithub": "Continue with GitHub",
+      "continueWithTwitter": "Continue with Twitter"
+    },
+    "register": {
+      "title": "Create your account",
+      "description": "Join us to start your transformation journey",
+      "submit": "Register",
+      "signInLink": "Already have an account? Sign in",
+      "success": "Registration successful",
+      "continueWithGoogle": "Continue with Google",
+      "continueWithGithub": "Continue with GitHub",
+      "continueWithTwitter": "Continue with Twitter",
+      "orContinueWith": "Or continue with email"
+    },
+    "errors": {
+      "CredentialsSignin": "Invalid email or password",
+      "unknown": "An error occurred",
+      "missing": "Please fill in all fields",
+      "missingFields": "Please fill in all fields",
+      "passwordMismatch": "Passwords do not match",
+      "emailExists": "Email already registered",
+      "invalidEmail": "Please enter a valid email address"
+    },
+    "validation": {
+      "password": {
+        "tooShort": "At least 8 characters",
+        "needsUpper": "At least one uppercase letter",
+        "needsLower": "At least one lowercase letter",
+        "needsNumber": "At least one number",
+        "needsSpecial": "At least one special character",
+        "strength": {
+          "weak": "Weak",
+          "fair": "Fair",
+          "good": "Good",
+          "strong": "Strong"
+        }
+      },
+      "name": {
+        "tooShort": "Name is too short",
+        "tooLong": "Name is too long"
+      },
+      "email": {
+        "invalid": "Invalid email address"
+      }
+    }
+  },
+  "meadow": {
+    "welcome": {
+      "name": "Welcome Meadow",
+      "description": "Welcome to our community! This is where your transformation journey begins. Explore resources, connect with others, and discover your path forward.",
+      "resources": {
+        "gettingStarted": {
+          "title": "Getting Started Guide",
+          "sections": {
+            "welcome": {
+              "title": "Welcome to Your Journey",
+              "content": "Welcome to our community! You are now at the start of your transformation journey. As an EGG stage member, you have taken the first step towards positive change."
+            },
+            "firstSteps": {
+              "title": "Your First Steps",
+              "content": "Explore the meadow, connect with other members, and discover resources that interest you. Remember, every butterfly starts as an egg!"
+            },
+            "nextSteps": {
+              "title": "Next Steps",
+              "content": "Join discussions, explore initiatives, and find areas where you'd like to contribute. Your journey is unique, and we're here to support you along the way."
+            }
+          }
+        },
+        "butterflyEffect": {
+          "title": "The Butterfly Effect",
+          "introduction": "Like a butterfly's metamorphosis, our movement believes in the power of natural, meaningful transformation.",
+          "stages": {
+            "egg": "The beginning of potential, where new ideas and possibilities emerge.",
+            "larvae": "A time of learning and growth, absorbing knowledge and experiences.",
+            "pupa": "Period of reflection and internal transformation.",
+            "butterfly": "Full participation and contribution to the community."
+          }
+        }
+      }
+    }
+  },
+  "lifestages": {
+    "flower": "Flower",
+    "egg": "Egg",
+    "larvae": "Larvae",
+    "pupa": "Pupa",
+    "butterfly": "Butterfly"
   }
 }

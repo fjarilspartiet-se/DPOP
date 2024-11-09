@@ -2,6 +2,9 @@ import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { StatsOverview } from './Dashboard';
+import { useSession } from 'next-auth/react';
+import WelcomeMeadow from './WelcomeMeadow';
+import { LifeStage } from '@prisma/client';
 import MeadowsPanel from './Dashboard/MeadowsPanel';
 import InitiativesPanel from './Dashboard/InitiativesPanel';
 import CommunityPanel from './Dashboard/CommunityPanel';
@@ -17,6 +20,7 @@ const mockStats = {
 const MovementDashboard = () => {
   const { t } = useTranslation('common');
   const router = useRouter();
+  const { data: session } = useSession();
 
   const handleMetricClick = (metric: string) => {
     console.log(`Navigating to /${metric}`);
@@ -24,6 +28,9 @@ const MovementDashboard = () => {
 
   return (
     <div className="space-y-6">
+      {session?.user && (
+        <WelcomeMeadow userStage={session.user.lifeStage as LifeStage} />
+      )}
       {/* Header */}
       <div className="border-b pb-4">
         <h1 className="text-2xl font-bold">{t('movement.dashboard.title')}</h1>

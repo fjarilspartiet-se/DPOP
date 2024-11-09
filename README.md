@@ -260,6 +260,7 @@ DPOP
 │   │   ├── api
 │   │   │   ├── movement
 │   │   │   └── party
+│   │   ├── _app.tsx
 │   │   ├── index.tsx
 │   │   ├── movement
 │   │   └── party
@@ -273,8 +274,30 @@ DPOP
 │   │   └── utils
 │   ├── shared
 │   │   ├── components
-│   │   │   └── Layout
-│   │   │       └── DualModeLayout.tsx
+│   │   │   ├── common
+│   │   │   │   ├── Card.tsx
+│   │   │   │   ├── MetricCard.tsx
+│   │   │   │   └── Panel.tsx
+│   │   │   ├── Layout
+│   │   │   │   └── DualModeLayout.tsx
+│   │   │   ├── Movement
+│   │   │   │   ├── Dashboard
+│   │   │   │   │   ├── CommunityPanel.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── InitiativesPanel.tsx
+│   │   │   │   │   ├── JourneyPanel.tsx
+│   │   │   │   │   ├── MeadowsPanel.tsx
+│   │   │   │   │   └── StatsOverview.tsx
+│   │   │   │   └── MovementDashboard.tsx
+│   │   │   └── Party
+│   │   │       ├── Dashboard
+│   │   │       │   ├── ActiveVotes.tsx
+│   │   │       │   ├── AlertsPanel.tsx
+│   │   │       │   ├── EventsPanel.tsx
+│   │   │       │   ├── index.tsx
+│   │   │       │   ├── ProposalsPanel.tsx
+│   │   │       │   └── StatsOverview.tsx
+│   │   │       └── PartyDashboard.tsx
 │   │   ├── context
 │   │   ├── hooks
 │   │   ├── layouts
@@ -282,6 +305,7 @@ DPOP
 │   │       ├── format.test.ts
 │   │       └── format.ts
 │   └── styles
+│       └── globals.css
 ├── tests
 │   ├── core
 │   ├── movement

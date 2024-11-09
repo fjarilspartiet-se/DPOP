@@ -2,25 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [0.3.0] - 2024-11-09
 
 ### Added
-- Dual support for party and movement operations
-- Swedish primary documentation with English translations
-- "Meadow" gathering coordination features
-- Natural growth stage framework
-- Universal design approach replacing special adaptations
-- Flexible governance models
+- Authentication system with email/password and social login support
+- Welcome meadow concept for new user onboarding
+- Life stage progression system implementation
+- Password strength validation with visual feedback
+- Multi-language support (Swedish/English) for all new features
+- Secure user registration flow with proper validation
+- Automatic meadow participant creation for new users
+- Dark/Light theme support across all components
+- Responsive design for all new components
 
 ### Changed
 - Restructured documentation to support party/movement duality
-- Updated database schema for dual-mode support
-- Revised approach to participant inclusion and accessibility
-- Enhanced communication framework for universal access
+- Enhanced database schema with proper relationships
+- Improved error handling and user feedback
+- Updated navigation with authentication state
+- Refined user experience with proper loading states
 
-### Removed
-- Special adaptations for different participant groups
-- Separate child-specific interfaces and processes
+### Fixed
+- Hydration issues in authentication flow
+- Session handling and persistence
+- Database relationship constraints
+- Form validation feedback
+- Translation system implementation
 
 ## [0.2.0] - 2024-11-01
 

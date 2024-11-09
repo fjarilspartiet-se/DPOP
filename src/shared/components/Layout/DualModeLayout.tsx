@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Sun, Moon, Users, Flower2, Globe, LayoutDashboard } from 'lucide-react';
+import { Sun, Moon, Users, Flower2, Globe, LayoutDashboard, LogOut, User } from 'lucide-react';
 import { useTranslation } from 'next-i18next';
+import { useSession, signOut } from 'next-auth/react';
 import PartyDashboard from '../Party/PartyDashboard';
 import { MovementDashboard } from '../Movement/Dashboard';
+import Link from 'next/link';
 
 const LANGUAGE_KEY = 'dpop_language';
 const MODE_KEY = 'dpop_mode';
@@ -12,42 +14,51 @@ const THEME_KEY = 'dpop_theme';
 const DualModeLayout = ({ children }) => {
   const router = useRouter();
   const { t } = useTranslation('common');
+  const { data: session, status } = useSession();
 
   // Initialize state with null to prevent hydration mismatch
-  const [mode, setMode] = useState('party');
-  const [theme, setTheme] = useState('light');
+  const [mode, setMode] = useState(null);
+  const [theme, setTheme] = useState(null);
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // Load saved preferences on mount
+  const [showUserMenu, setShowUserMenu] = useState(false);
+
+  // Initialize state after mount
   useEffect(() => {
-    // Load saved preferences
+    const savedMode = localStorage.getItem(MODE_KEY) || 'party';
+    const savedTheme = localStorage.getItem(THEME_KEY) || 'light';
     const savedLanguage = localStorage.getItem(LANGUAGE_KEY);
-    const savedMode = localStorage.getItem(MODE_KEY);
-    const savedTheme = localStorage.getItem(THEME_KEY);
 
-    // Apply saved preferences or defaults
+    setMode(savedMode);
+    setTheme(savedTheme);
+
+    // Update language if needed
     if (savedLanguage && savedLanguage !== router.locale) {
       router.push(router.pathname, router.asPath, { locale: savedLanguage });
     }
-    if (savedMode) setMode(savedMode);
-    if (savedTheme) setTheme(savedTheme);
 
-    setIsInitialized(true);
+    setMounted(true);
   }, []);
 
-  // Save preferences when they change
+  // Update localStorage when state changes
   useEffect(() => {
-    if (isInitialized) {
+    if (mounted && mode) {
       localStorage.setItem(MODE_KEY, mode);
     }
-  }, [mode, isInitialized]);
+  }, [mode, mounted]);
 
   useEffect(() => {
-    if (isInitialized) {
+    if (mounted && theme) {
       localStorage.setItem(THEME_KEY, theme);
+      document.documentElement.classList.toggle('dark', theme === 'dark');
     }
-  }, [theme, isInitialized]);
+  }, [theme, mounted]);
+
+  const handleSignOut = async () => {
+    await signOut({ redirect: true, callbackUrl: '/' });
+  };
 
   const changeLanguage = (locale: string) => {
     localStorage.setItem(LANGUAGE_KEY, locale);
@@ -68,8 +79,8 @@ const DualModeLayout = ({ children }) => {
     setTheme(newTheme);
   };
 
-  // Add a loading state while initializing preferences
-  if (!isInitialized) {
+  // Show loading state until client-side hydration is complete
+  if (!mounted) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
         <div className="text-gray-600 dark:text-gray-300">
@@ -166,12 +177,54 @@ const DualModeLayout = ({ children }) => {
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
             </button>
 
-            {/* Sign In Button */}
-            <button className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
-              mode === 'party' ? 'bg-blue-500 hover:bg-blue-600' : 'bg-green-500 hover:bg-green-600'
-            } text-white`}>
-              <span>{t('nav.signIn')}</span>
-            </button>
+            {/* User Menu */}
+            {status === 'authenticated' ? (
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  {session.user.image ? (
+                    <img
+                      src={session.user.image}
+                      alt={session.user.name || ''}
+                      className="w-8 h-8 rounded-full"
+                    />
+                  ) : (
+                    <User className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                  )}
+                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                    {session.user.name || session.user.email}
+                  </span>
+                </button>
+
+                {showUserMenu && (
+                  <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
+                    <div className="py-1" role="menu">
+                      <div className="px-4 py-2 text-xs text-gray-500 dark:text-gray-400">
+                        {t('nav.lifeStage')}: {session.user.lifeStage}
+                      </div>
+                      <button
+                        onClick={handleSignOut}
+                        className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center"
+                      >
+                        <LogOut className="w-4 h-4 mr-2" />
+                        {t('nav.signOut')}
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                href="/auth/signin"
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
+                  mode === 'party' ? 'bg-blue-500 hover:bg-blue-600' : 'bg-green-500 hover:bg-green-600'
+                } text-white`}
+              >
+                <span>{t('nav.signIn')}</span>
+              </Link>
+            )}
           </div>
         </div>
       </nav>

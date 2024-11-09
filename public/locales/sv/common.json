@@ -159,5 +159,108 @@
       "noResults": "Inga resultat att visa",
       "errorLoading": "Kunde inte ladda data"
     }
+  },
+  "auth": {
+    "name": "Fullständigt namn",
+    "signIn": "Logga in till ditt konto",
+    "email": "Epostadress",
+    "password": "Lösenord",
+    "confirmPassword": "Bekräfta lösenord",
+    "signInButton": "Logga in",
+    "signIn": {
+      "title": "Logga in på ditt konto",
+      "description": "Välj din föredragna inloggningsmetod",
+      "submit": "Logga in",
+      "noAccount": "Har du inget konto?",
+      "register": "Registrera dig här",
+      "orContinueWith": "Eller fortsätt med",
+      "continueWithGoogle": "Fortsätt med Google",
+      "continueWithGithub": "Fortsätt med GitHub",
+      "continueWithTwitter": "Fortsätt med Twitter"
+    },
+    "register": {
+      "title": "Skapa ditt konto",
+      "description": "Gå med oss för att börja din transformationsresa",
+      "submit": "Registrera",
+      "signInLink": "Har du redan ett konto? Logga in",
+      "success": "Registrering slutförd",
+      "continueWithGoogle": "Fortsätt med Google",
+      "continueWithGithub": "Fortsätt med GitHub",
+      "continueWithTwitter": "Fortsätt med Twitter",
+      "orContinueWith": "Eller fortsätt med epost"
+    },
+    "errors": {
+      "CredentialsSignin": "Ogilitig epostadress eller lösenord",
+      "unknown": "Ett fel uppstod",
+      "missing": "Var god fyll i alla fält",
+      "missingFields": "Vänligen fyll i alla fält",
+      "passwordMismatch": "Lösenorden matchar inte",
+      "emailExists": "E-postadressen är redan registrerad",
+      "invalidEmail": "Vänligen ange en giltig e-postadress"
+    },
+    "validation": {
+      "password": {
+        "tooShort": "Minst 8 tecken",
+        "needsUpper": "Minst en stor bokstav",
+        "needsLower": "Minst en liten bokstav",
+        "needsNumber": "Minst en siffra",
+        "needsSpecial": "Minst ett specialtecken",
+        "strength": {
+          "weak": "Svagt",
+          "fair": "Ganska bra",
+          "good": "Bra",
+          "strong": "Starkt"
+        }
+      },
+      "name": {
+        "tooShort": "Namnet är för kort",
+        "tooLong": "Namnet är för långt"
+      },
+      "email": {
+        "invalid": "Ogiltig epostadress"
+      }
+    }
+  },
+  "meadow": {
+    "welcome": {
+      "name": "Välkomstängen",
+      "description": "Välkommen till vår gemenskap! Här börjar din transformationsresa. Utforska resurser, knyt kontakter och upptäck din väg framåt.",
+      "resources": {
+        "gettingStarted": {
+          "title": "Komma igång-guide",
+          "sections": {
+            "welcome": {
+              "title": "Välkommen till din resa",
+              "content": "Välkommen till vår gemenskap! Du står nu i början av din transformationsresa. Som medlem i ÄGG-stadiet har du tagit det första steget mot positiv förändring."
+            },
+            "firstSteps": {
+              "title": "Dina första steg",
+              "content": "Utforska ängen, knyt kontakter med andra medlemmar och upptäck resurser som intresserar dig. Kom ihåg att varje fjäril börjar som ett ägg!"
+            },
+            "nextSteps": {
+              "title": "Nästa steg",
+              "content": "Delta i diskussioner, utforska initiativ och hitta områden där du vill bidra. Din resa är unik, och vi finns här för att stödja dig längs vägen."
+            }
+          }
+        },
+        "butterflyEffect": {
+          "title": "Fjärilseffekten",
+          "introduction": "Likt en fjärils metamorfos tror vår rörelse på kraften i naturlig, meningsfull transformation.",
+          "stages": {
+            "egg": "Början på potentialen, där nya idéer och möjligheter uppstår.",
+            "larvae": "En tid av lärande och tillväxt, där kunskap och erfarenheter absorberas.",
+            "pupa": "Period av reflektion och inre transformation.",
+            "butterfly": "Fullt deltagande och bidrag till gemenskapen."
+          }
+        }
+      }
+    }
+  },
+  "lifestages": {
+    "flower": "Blomma",
+    "egg": "Ägg",
+    "larvae": "Larv",
+    "pupa": "Puppa",
+    "butterfly": "Fjäril"
   }
 }
