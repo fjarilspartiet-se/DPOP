@@ -12,6 +12,28 @@ DPOP is a decentralized platform designed to support both political parties and 
 - **Inclusive Design**: Universal accessibility without special adaptations for different groups
 - **Hybrid Operations**: Seamless integration of digital and physical activities
 
+## Latest Features (v0.3.0)
+
+### Authentication & User Management
+- Secure email/password registration and login
+- Social login support (ready for Google, GitHub, Twitter)
+- Password strength validation with real-time feedback
+- Seamless dark/light theme integration
+- Complete multi-language support (Swedish/English)
+
+### Movement Features
+- Welcome meadow concept for new member onboarding
+- Life stage progression system (Flower → Egg → Larvae → Pupa → Butterfly)
+- Guided user journey with stage-appropriate resources
+- Integrated participant management
+
+### Core Platform
+- Decentralized, P2P-based system
+- Real-time party updates and voting
+- Spontaneous meeting organization
+- Cross-platform group management
+- Resource sharing and coordination
+
 ## Features (Planned)
 
 ### Core Platform
@@ -54,14 +76,15 @@ DPOP is a decentralized platform designed to support both political parties and 
 
 ## Current Status
 
-Version 0.2.0 - Implementing core features:
+Version 0.3.0 - Core features implemented:
 - ✅ Dual-mode dashboard (Party/Movement)
-- ✅ Language persistence (Swedish/English)
-- ✅ Dark/Light theme support
+- ✅ Authentication system
+- ✅ Welcome meadow onboarding
+- ✅ Life stage system
+- ✅ Multi-language support
+- ✅ Dark/Light theme
 - ✅ Responsive layout
-- 🚧 Authentication system (In progress)
-- 🚧 DPOP core features (In progress)
-- 📅 P2P functionality (Planned)
+- 🚧 P2P functionality (Planned)
 
 The platform currently supports basic navigation and view switching between party and movement modes, with persistent user preferences and localization support. Development is focused on implementing core features while maintaining the flexibility to support both structured party operations and fluid movement activities.
 
@@ -99,9 +122,19 @@ The platform currently supports basic navigation and view switching between part
    cp .env.example .env
    ```
 
-4. Configure your environment variables in `.env`
+4. Configure your environment variables in `.env`:
+   ```env
+   DATABASE_URL="postgresql://user:password@localhost:5432/dpop?schema=public"
+   NEXTAUTH_URL="http://localhost:3000"
+   NEXTAUTH_SECRET="your-secret-here"
+   ```
 
-5. Start development server:
+5. Initialize the database:
+   ```bash
+   npx prisma migrate dev
+   ```
+
+6. Start development server:
    ```bash
    npm run dev
    ```
