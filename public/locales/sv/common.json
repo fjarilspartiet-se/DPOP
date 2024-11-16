@@ -74,10 +74,19 @@
     "edit": "Redigera",
     "delete": "Ta bort",
     "confirm": "Bekräfta",
+    "search": "Sök",
     "dateTime": {
       "today": "Idag",
       "tomorrow": "Imorgon",
-      "yesterday": "Igår"
+      "yesterday": "Igår",
+      "at": "kl.",
+      "daysRemaining": "{{days}} dagar kvar",
+      "hoursRemaining": "{{hours}} timmar kvar",
+      "minutesRemaining": "{{minutes}} minuter kvar",
+      "justNow": "Just nu",
+      "minutesAgo": "{{minutes}}m sedan",
+      "hoursAgo": "{{hours}}t sedan",
+      "daysAgo": "{{days}}d sedan"
     },
     "endDate": "Slutdatum"
   },
@@ -158,6 +167,56 @@
       "loadMore": "Ladda fler",
       "noResults": "Inga resultat att visa",
       "errorLoading": "Kunde inte ladda data"
+    },
+    "meadows": {
+      "title": "Ängar",
+      "create": "Skapa äng",
+      "edit": "Redigera äng",
+      "delete": "Ta bort äng",
+      "deleteConfirmTitle": "Bekräfta borttagning",
+      "deleteConfirmMessage": "Är du säker på att du vill ta bort ängen {name}?",
+      "form": {
+        "name": "Namn",
+        "description": "Beskrivning",
+        "type": "Typ",
+        "status": "Status",
+        "location": "Plats",
+        "dateTime": "Datum och tid",
+        "maxParticipants": "Max antal deltagare"
+      },
+      "types": {
+        "gathering": "Samling",
+        "workshop": "Workshop",
+        "discussion": "Diskussion"
+      },
+      "status": {
+        "planned": "Planerad",
+        "active": "Aktiv",
+        "completed": "Avslutad"
+      },
+      "participants": "Deltagare",
+      "host": "Värd",
+      "hostSince": "Värd sedan {date}",
+      "join": "Gå med",
+      "leave": "Lämna",
+      "capacity": "Kapacitet",
+      "activity": "Aktivitet",
+      "details": "Detaljer",
+      "created": "Skapad",
+      "location": "Plats",
+      "messageCount": "Meddelanden",
+      "activities": {
+        "join": "gick med i ängen",
+        "leave": "lämnade ängen",
+        "message": "postade ett meddelande",
+        "contribution": "bidrog till ängen"
+      },
+      "recentActivity": "Senaste aktivitet",
+      "roles": {
+        "host": "Värd",
+        "participant": "Deltagare"
+      },
+      "daysRemaining": "{{days}} dagar kvar"
     }
   },
   "auth": {

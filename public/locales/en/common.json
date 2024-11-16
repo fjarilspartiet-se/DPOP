@@ -74,10 +74,20 @@
     "edit": "Edit",
     "delete": "Delete",
     "confirm": "Confirm",
+    "search": "Search",
+    "daysRemaining": "{{days}} days remaining",
     "dateTime": {
       "today": "Today",
       "tomorrow": "Tomorrow",
-      "yesterday": "Yesterday"
+      "yesterday": "Yesterday",
+      "at": "at", 
+      "daysRemaining": "{{days}} days remaining",
+      "hoursRemaining": "{{hours}} hours remaining",
+      "minutesRemaining": "{{minutes}} minutes remaining",
+      "justNow": "Just now",
+      "minutesAgo": "{{minutes}}m ago",
+      "hoursAgo": "{{hours}}h ago",
+      "daysAgo": "{{days}}d ago"
     },
     "endDate": "End date"
   },
@@ -158,6 +168,56 @@
       "loadMore": "Load more",
       "noResults": "No results to show",
       "errorLoading": "Error loading data"
+    },
+    "meadows": {
+      "title": "Meadows",
+      "create": "Create meadow",
+      "edit": "Edit meadow",
+      "delete": "Delete meadow",
+      "deleteConfirmTitle": "Confirm deletion",
+      "deleteConfirmMessage": "Are you sure you want to delete the meadow {name}?",
+      "form": {
+        "name": "Name",
+        "description": "Description",
+        "type": "Type",
+        "status": "Status",
+        "location": "Location",
+        "dateTime": "Date and time",
+        "maxParticipants": "Maximum participants"
+      },
+      "types": {
+        "gathering": "Gathering",
+        "workshop": "Workshop",
+        "discussion": "Discussion"
+      },
+      "status": {
+        "planned": "Planned",
+        "active": "Active",
+        "completed": "Completed"
+      },
+      "participants": "Participants",
+      "host": "Host",
+      "hostSince": "Host since {date}",
+      "join": "Join",
+      "leave": "Leave",
+      "capacity": "Capacity",
+      "activity": "Activity",
+      "details": "Details",
+      "created": "Created",
+      "location": "Location",
+      "messageCount": "Messages",
+      "activities": {
+        "join": "joined the meadow",
+        "leave": "left the meadow",
+        "message": "posted a message",
+        "contribution": "contributed to the meadow"
+      },
+      "recentActivity": "Recent Activity",
+      "roles": {
+        "host": "Host",
+        "participant": "Participant"
+      },
+      "daysRemaining": "{{days}} days remaining"
     }
   },
   "auth": {

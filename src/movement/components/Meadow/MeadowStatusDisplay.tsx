@@ -5,7 +5,7 @@ import { MeadowStatus } from '@prisma/client';
 
 interface MeadowStatusProps {
   status: MeadowStatus;
-  dateTime?: Date;
+  dateTime?: Date | string;  // Allow both Date and string types
   location: string;
   maxParticipants?: number;
   currentParticipants: number;
@@ -28,8 +28,18 @@ const MeadowStatusDisplay = ({
 
   const getTimeRemaining = () => {
     if (!dateTime) return null;
+
+    // Convert string to Date if needed
+    const date = dateTime instanceof Date ? dateTime : new Date(dateTime);
+
+    // Validate date
+    if (isNaN(date.getTime())) {
+      console.error('Invalid date:', dateTime);
+      return null;
+    }
+
     const now = new Date();
-    const diff = dateTime.getTime() - now.getTime();
+    const diff = date.getTime() - now.getTime();
     
     if (diff < 0) return null;
     
@@ -50,13 +60,31 @@ const MeadowStatusDisplay = ({
     return 'bg-green-200 dark:bg-green-900';
   };
 
+  const formatDateTime = (date: Date | string) => {
+    try {
+      const d = new Date(date);
+      if (isNaN(d.getTime())) return null;
+      
+      return {
+        date: d.toLocaleDateString(),
+        time: d.toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit'
+        })
+      };
+    } catch (error) {
+      console.error('Error formatting date:', error);
+      return null;
+    }
+  };
+
   return (
     <div className="space-y-3">
       <div className="flex flex-wrap gap-2">
         <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColors[status]}`}>
           {t(`movement.meadows.status.${status.toLowerCase()}`)}
         </span>
-        {dateTime && (
+        {dateTime && getTimeRemaining() && (
           <span className="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-300">
             <Timer className="w-4 h-4" />
             {getTimeRemaining()}
@@ -66,13 +94,14 @@ const MeadowStatusDisplay = ({
 
       <div className="space-y-2">
         {dateTime && (
-          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-            <Calendar className="w-4 h-4" />
-            {dateTime.toLocaleDateString()} {dateTime.toLocaleTimeString([], {
-              hour: '2-digit',
-              minute: '2-digit'
-            })}
-          </div>
+          <>
+            {formatDateTime(dateTime) && (
+              <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                <Calendar className="w-4 h-4" />
+                {formatDateTime(dateTime)?.date} {formatDateTime(dateTime)?.time}
+              </div>
+            )}
+          </>
         )}
         
         <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">

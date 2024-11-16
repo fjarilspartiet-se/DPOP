@@ -4,6 +4,8 @@ import { Meadow, CreateMeadowInput, UpdateMeadowInput } from '@/types/meadow';
 import prisma from '@/lib/db';
 import { MeadowType, MeadowStatus } from '@prisma/client';
 
+import { mockMeadows } from '@/movement/mocks/meadowData';
+
 export const meadowService = {
   async createMeadow(data: CreateMeadowInput, userId: string): Promise<Meadow> {
     return await prisma.meadow.create({
@@ -70,7 +72,7 @@ export const meadowService = {
     });
   },
 
-  async listMeadows(params: {
+ /* async listMeadows(params: {
     type?: MeadowType;
     status?: MeadowStatus;
     search?: string;
@@ -102,7 +104,27 @@ export const meadowService = {
         dateTime: 'asc'
       }
     });
+  },*/
+  async listMeadows({ type, status, search }) {
+    let filteredMeadows = [...mockMeadows];
+    
+    if (type) {
+      filteredMeadows = filteredMeadows.filter(m => m.type === type);
+    }
+    if (status) {
+      filteredMeadows = filteredMeadows.filter(m => m.status === status);
+    }
+    if (search) {
+      const searchLower = search.toLowerCase();
+      filteredMeadows = filteredMeadows.filter(m => 
+        m.name.toLowerCase().includes(searchLower) ||
+        m.description.toLowerCase().includes(searchLower)
+      );
+    }
+    
+    return filteredMeadows;
   },
+
 
   async joinMeadow(meadowId: string, userId: string): Promise<void> {
     await prisma.$transaction(async (tx) => {

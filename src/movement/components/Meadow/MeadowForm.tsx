@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { MeadowType, MeadowStatus } from '@prisma/client';
-import { Card } from '@/shared/components/common/Card';
+import Card from '@/shared/components/common/Card';
 import { X } from 'lucide-react';
 
 interface MeadowFormProps {

@@ -4,12 +4,13 @@ import { Flower2, Plus, Search } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { MeadowType, MeadowStatus } from '@prisma/client';
 import { Alert, AlertDescription, AlertTitle } from '@/shared/components/common/Alert';
-import { Card } from '@/shared/components/common/Card';
+import Card from '@/shared/components/common/Card';
 import { useMeadows } from '@/movement/hooks/useMeadows';
 import MeadowForm from './MeadowForm';
 import MeadowActivityDisplay from './MeadowActivityDisplay';
 import MeadowParticipants from './MeadowParticipants';
 import MeadowStatusDisplay from './MeadowStatusDisplay';
+import type { Meadow } from '@/movement/types/meadow';
 
 interface MeadowManagerProps {
   onSelectMeadow: (meadow: Meadow) => void;

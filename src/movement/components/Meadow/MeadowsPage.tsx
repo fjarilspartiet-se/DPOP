@@ -1,11 +1,9 @@
-// src/movement/components/Meadow/MeadowsPage.tsx
-
 import React, { useState } from 'react';
 import { useTranslation } from 'next-i18next';
-import MeadowManager from './MeadowManager';
-import MeadowDetail from './MeadowDetail';  
+import { MeadowManager } from '@/movement/components/Meadow';
+import { MeadowDetail } from '@/movement/components/Meadow';
 import { useMeadows } from '@/movement/hooks/useMeadows';
-import { Meadow } from '@/movement/types/meadow';
+import type { Meadow } from '@/movement/types/meadow';
 import { Alert, AlertDescription, AlertTitle } from '@/shared/components/common/Alert';
 
 const MeadowsPage: React.FC = () => {
