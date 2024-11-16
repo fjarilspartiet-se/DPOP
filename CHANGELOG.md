@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.1] - 2024-11-16
+
+### Added
+- Core meadow management functionality
+- Meadow activity tracking and visualization
+- Participant management interface
+- Detailed meadow view with status display
+- Meadow creation and editing capabilities
+- Common UI components for alerts and cards
+
+### Changed
+- Reorganized component structure for better maintainability
+- Improved navigation in dual-mode layout
+- Enhanced type safety across components
+- Updated routing structure for movement features
+
+### Fixed
+- Component export/import inconsistencies
+- Navigation routing issues
+- TypeScript configuration for JSX components
+- Alert component styling in dark mode
+
 ## [0.3.0] - 2024-11-09
 
 ### Added

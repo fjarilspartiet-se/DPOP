@@ -12,81 +12,50 @@ DPOP is a decentralized platform designed to support both political parties and 
 - **Inclusive Design**: Universal accessibility without special adaptations for different groups
 - **Hybrid Operations**: Seamless integration of digital and physical activities
 
-## Latest Features (v0.3.0)
+## Latest Updates (v0.3.1)
 
-### Authentication & User Management
-- Secure email/password registration and login
-- Social login support (ready for Google, GitHub, Twitter)
-- Password strength validation with real-time feedback
-- Seamless dark/light theme integration
-- Complete multi-language support (Swedish/English)
+### New Features
+- Complete meadow management system
+  - Create and edit meadows
+  - Track meadow activities
+  - Manage participants
+  - View detailed meadow information
+- Enhanced UI components
+  - Alert system
+  - Card components
+  - Status displays
+- Improved navigation and routing
 
-### Movement Features
-- Welcome meadow concept for new member onboarding
-- Life stage progression system (Flower → Egg → Larvae → Pupa → Butterfly)
-- Guided user journey with stage-appropriate resources
-- Integrated participant management
+### Core Features (v0.3.0)
+- Authentication system with social login support
+- Multi-language support (Swedish/English)
+- Dark/Light theme
+- Life stage progression system
+- Welcome meadow onboarding
 
-### Core Platform
-- Decentralized, P2P-based system
-- Real-time party updates and voting
-- Spontaneous meeting organization
-- Cross-platform group management
-- Resource sharing and coordination
+## Development Status
 
-## Features (Planned)
+Current focus is on implementing core movement features, starting with the meadow management system. Key components:
 
-### Core Platform
-- Decentralized, P2P-based system
-- Real-time party updates and voting
-- Spontaneous meeting organization
-- Cross-platform group management
-- Resource sharing and coordination
+### Completed
+✅ Authentication system
+✅ Language switching
+✅ Theme support
+✅ Basic navigation
+✅ Welcome meadow
+✅ Meadow management interface
 
-### Engagement Support
-- Simple proposal submission
-- Flexible voting mechanisms
-- Impromptu meeting tools
-- Group formation support
-- Multi-platform integration
+### In Progress
+🚧 Meadow interaction features
+🚧 Activity tracking
+🚧 Participant management
+🚧 Real-time updates
 
-### Technical Foundation
-- Robust security framework
-- Privacy-preserving design
-- Offline-first architecture
-- Cross-platform compatibility
-- API-driven integration
-
-### Shared Infrastructure
-- Secure member management and communication
-- Document management with offline support
-- Event coordination and resource management
-
-### Party-Specific Features
-- Formal decision-making tools
-- Committee management
-- Campaign coordination
-- Policy development support
-
-### Movement-Specific Features
-- Fluid participation support
-- "Meadow" gathering coordination
-- Initiative management
-- Resource sharing platform
-
-## Current Status
-
-Version 0.3.0 - Core features implemented:
-- ✅ Dual-mode dashboard (Party/Movement)
-- ✅ Authentication system
-- ✅ Welcome meadow onboarding
-- ✅ Life stage system
-- ✅ Multi-language support
-- ✅ Dark/Light theme
-- ✅ Responsive layout
-- 🚧 P2P functionality (Planned)
-
-The platform currently supports basic navigation and view switching between party and movement modes, with persistent user preferences and localization support. Development is focused on implementing core features while maintaining the flexibility to support both structured party operations and fluid movement activities.
+### Planned
+📋 Initiative management
+📋 Community features
+📋 Journey tracking
+📋 Resource sharing
 
 ## Tech Stack
 

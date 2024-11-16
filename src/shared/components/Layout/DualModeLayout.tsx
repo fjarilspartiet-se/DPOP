@@ -261,13 +261,25 @@ const DualModeLayout = ({ children }) => {
                 <h3 className={`px-4 py-2 text-sm font-semibold ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'}`}>
                   {t('movement.menu.title')}
                 </h3>
-                <button className={`w-full px-4 py-2 text-left rounded-lg flex items-center space-x-2 ${theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-700'} ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}>
+                <button
+                  onClick={() => router.push('/movement/dashboard')}
+                  className={`w-full px-4 py-2 text-left rounded-lg flex items-center space-x-2 ${
+                    router.pathname === '/movement/dashboard' 
+                      ? 'bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400' 
+                      : theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-700'
+                  } ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}
+                >
                   <LayoutDashboard size={18} />
                   <span>{t('movement.menu.dashboard')}</span>
                 </button>
-                <button className={`w-full px-4 py-2 text-left rounded-lg flex items-center space-x-2 ${
-                  theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-700'
-                } ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}>
+                <button
+                  onClick={() => router.push('/movement/meadows')}
+                  className={`w-full px-4 py-2 text-left rounded-lg flex items-center space-x-2 ${
+                    router.pathname === '/movement/meadows'
+                      ? 'bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400'
+                      : theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-700'
+                  } ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}
+                >
                   <Flower2 size={18} />
                   <span>{t('movement.menu.meadows')}</span>
                 </button>
