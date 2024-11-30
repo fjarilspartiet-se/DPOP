@@ -1,4 +1,5 @@
 // src/pages/api/movement/meadows/[id].ts
+
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
@@ -30,11 +31,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       const updatedMeadow = await meadowService.updateMeadow({
         id,
         ...req.body,
+        userId: session.user.id // for permission checking
       });
       return res.status(200).json(updatedMeadow);
 
     case 'DELETE':
-      await meadowService.deleteMeadow(id);
+      await meadowService.deleteMeadow(id, session.user.id);
       return res.status(204).end();
 
     default:

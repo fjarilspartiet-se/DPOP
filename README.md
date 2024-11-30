@@ -12,30 +12,30 @@ DPOP is a decentralized platform designed to support both political parties and 
 - **Inclusive Design**: Universal accessibility without special adaptations for different groups
 - **Hybrid Operations**: Seamless integration of digital and physical activities
 
-## Latest Updates (v0.3.1)
+## Latest Updates (v0.3.2)
 
 ### New Features
-- Complete meadow management system
-  - Create and edit meadows
-  - Track meadow activities
-  - Manage participants
-  - View detailed meadow information
+- Complete journey tracking system
+  - Achievement notifications
+  - Stage progression visualization
+  - Real-time achievement updates
+  - Comprehensive meadow operations
 - Enhanced UI components
-  - Alert system
-  - Card components
-  - Status displays
-- Improved navigation and routing
+  - Journey visualization
+  - Achievement notifications
+  - Stage progression display
+- Improved service layer
 
-### Core Features (v0.3.0)
+### Core Features
 - Authentication system with social login support
 - Multi-language support (Swedish/English)
 - Dark/Light theme
 - Life stage progression system
 - Welcome meadow onboarding
+- Journey tracking system
+- Achievement system
 
 ## Development Status
-
-Current focus is on implementing core movement features, starting with the meadow management system. Key components:
 
 ### Completed
 ✅ Authentication system
@@ -44,12 +44,14 @@ Current focus is on implementing core movement features, starting with the meado
 ✅ Basic navigation
 ✅ Welcome meadow
 ✅ Meadow management interface
+✅ Journey tracking system
+✅ Achievement notifications
 
 ### In Progress
-🚧 Meadow interaction features
-🚧 Activity tracking
-🚧 Participant management
 🚧 Real-time updates
+🚧 Initiative management
+🚧 Community features
+🚧 Resource sharing
 
 ### Planned
 📋 Initiative management
@@ -249,22 +251,66 @@ DPOP
 │   │   └── utils
 │   ├── lib
 │   │   └── db.ts
+│   ├── middleware
+│   │   └── error.ts
 │   ├── models
 │   ├── movement
 │   │   ├── components
+│   │   │   ├── Journey
+│   │   │   │   ├── AchievementNotificationManager.tsx
+│   │   │   │   ├── AchievementNotification.tsx
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── JourneyDashboard.tsx
+│   │   │   │   └── StageProgressionTracker.tsx
+│   │   │   ├── Meadow
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── MeadowActivityDisplay.tsx
+│   │   │   │   ├── MeadowDetail.tsx
+│   │   │   │   ├── MeadowForm.tsx
+│   │   │   │   ├── MeadowManager.tsx
+│   │   │   │   ├── MeadowParticipants.tsx
+│   │   │   │   ├── MeadowsPage.tsx
+│   │   │   │   └── MeadowStatusDisplay.tsx
 │   │   │   └── Navigation
 │   │   │       └── MovementNav.tsx
 │   │   ├── hooks
+│   │   │   ├── useAchievements.ts
+│   │   │   ├── useJourney.ts
+│   │   │   ├── useMeadows.ts
+│   │   │   └── useStageProgression.ts
+│   │   ├── mocks
+│   │   │   └── meadowData.ts
 │   │   ├── services
 │   │   │   └── index.ts
+│   │   ├── types
+│   │   │   └── meadow.ts
 │   │   └── utils
 │   ├── pages
 │   │   ├── api
+│   │   │   ├── auth
+│   │   │   │   ├── [...nextauth].ts
+│   │   │   │   └── register.ts
 │   │   │   ├── movement
+│   │   │   │   ├── achievements
+│   │   │   │   │   ├── [id]
+│   │   │   │   │   │   └── seen.ts
+│   │   │   │   │   └── new.ts
+│   │   │   │   └── meadows
+│   │   │   │       ├── [id]
+│   │   │   │       │   ├── complete.ts
+│   │   │   │       │   ├── join.ts
+│   │   │   │       │   └── leave.ts
+│   │   │   │       ├── [id].ts
+│   │   │   │       └── index.ts
 │   │   │   └── party
 │   │   ├── _app.tsx
+│   │   ├── auth
+│   │   │   ├── register.tsx
+│   │   │   └── signin.tsx
 │   │   ├── index.tsx
 │   │   ├── movement
+│   │   │   └── meadows
+│   │   │       └── index.tsx
 │   │   └── party
 │   ├── party
 │   │   ├── components
@@ -274,12 +320,20 @@ DPOP
 │   │   ├── services
 │   │   │   └── index.ts
 │   │   └── utils
+│   ├── services
+│   │   ├── achievementHandlers.ts
+│   │   ├── achievementService.ts
+│   │   ├── achievementTriggers.ts
+│   │   ├── meadowService.ts
+│   │   └── stageService.ts
 │   ├── shared
 │   │   ├── components
 │   │   │   ├── common
+│   │   │   │   ├── Alert.tsx
 │   │   │   │   ├── Card.tsx
 │   │   │   │   ├── MetricCard.tsx
-│   │   │   │   └── Panel.tsx
+│   │   │   │   ├── Panel.tsx
+│   │   │   │   └── PasswordStrengthMeter.tsx
 │   │   │   ├── Layout
 │   │   │   │   └── DualModeLayout.tsx
 │   │   │   ├── Movement
@@ -290,7 +344,8 @@ DPOP
 │   │   │   │   │   ├── JourneyPanel.tsx
 │   │   │   │   │   ├── MeadowsPanel.tsx
 │   │   │   │   │   └── StatsOverview.tsx
-│   │   │   │   └── MovementDashboard.tsx
+│   │   │   │   ├── MovementDashboard.tsx
+│   │   │   │   └── WelcomeMeadow.tsx
 │   │   │   └── Party
 │   │   │       ├── Dashboard
 │   │   │       │   ├── ActiveVotes.tsx
@@ -302,12 +357,16 @@ DPOP
 │   │   │       └── PartyDashboard.tsx
 │   │   ├── context
 │   │   ├── hooks
+│   │   │   └── useAuth.ts
 │   │   ├── layouts
 │   │   └── utils
 │   │       ├── format.test.ts
-│   │       └── format.ts
-│   └── styles
-│       └── globals.css
+│   │       ├── format.ts
+│   │       └── password.ts
+│   ├── styles
+│   │   └── globals.css
+│   └── types
+│       └── meadow.ts
 ├── tests
 │   ├── core
 │   ├── movement

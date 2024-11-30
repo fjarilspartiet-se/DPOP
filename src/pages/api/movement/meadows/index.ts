@@ -1,9 +1,11 @@
 // src/pages/api/movement/meadows/index.ts
+
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { meadowService } from '@/services/meadowService';
 import { withErrorHandler } from '@/middleware/error';
+import { MeadowStatus, MeadowType } from '@prisma/client';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions);
@@ -16,18 +18,18 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     case 'GET':
       const { type, status, search } = req.query;
       const meadows = await meadowService.listMeadows({
-        type: type as any,
-        status: status as any,
-        search: search as string,
+        type: type as MeadowType | undefined,
+        status: status as MeadowStatus | undefined,
+        search: search as string | undefined,
       });
       return res.status(200).json(meadows);
 
     case 'POST':
-      const newMeadow = await meadowService.createMeadow(
+      const meadow = await meadowService.createMeadow(
         req.body,
         session.user.id
       );
-      return res.status(201).json(newMeadow);
+      return res.status(201).json(meadow);
 
     default:
       res.setHeader('Allow', ['GET', 'POST']);

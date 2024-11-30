@@ -63,15 +63,15 @@ model MeadowParticipant {
 }
 
 model StageTransition {
-  id             String           @id @default(cuid())
-  participantId  String
-  fromStage      LifeStage
-  toStage        LifeStage
-  notes          String?
-  transitionedAt DateTime         @default(now())
+  id          String    @id @default(cuid())
+  userId      String
+  fromStage   LifeStage
+  toStage     LifeStage
+  reason      String?
+  createdAt   DateTime  @default(now())
   
   // Relations
-  participant    MeadowParticipant @relation(fields: [participantId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
 
   @@map("stage_transitions")
 }
@@ -143,6 +143,45 @@ enum AccessLevel {
   STEWARD      // Available to stewards only
 }
 
+enum AchievementType {
+  STAGE
+  CONTRIBUTION
+  PARTICIPATION
+  MILESTONE
+}
+
+model Achievement {
+  id          String          @id @default(cuid())
+  title       String
+  description String
+  type        AchievementType
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  
+  // Requirements for earning
+  requirements Json
+  
+  // Track who earned it
+  userAchievements UserAchievement[]
+
+  @@map("achievements")
+}
+
+model UserAchievement {
+  id            String     @id @default(cuid())
+  userId        String
+  achievementId String
+  earnedAt      DateTime   @default(now())
+  progress      Int        @default(0)  // 0-100%
+  
+  // Relations
+  user        User        @relation(fields: [userId], references: [id])
+  achievement Achievement @relation(fields: [achievementId], references: [id])
+
+  @@unique([userId, achievementId])
+  @@map("user_achievements")
+}
+
 // Auth Models
 model Account {
   id                String  @id @default(cuid())
@@ -187,6 +226,11 @@ model User {
   
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+
+  achievements    UserAchievement[]
+  stageHistory   StageTransition[]
+  currentStage   LifeStage        @default(EGG)
+  stageUpdatedAt DateTime         @default(now())
 
   @@map("users")
 }

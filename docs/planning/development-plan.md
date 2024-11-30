@@ -59,6 +59,7 @@ version: 1.0
 - [ ] Create member registration
 - [ ] Implement login system
 - [ ] Build profile management
+     [x] Stage progression
 - [ ] Set up role management
 - [ ] Create member directory
 - [ ] Implement account settings
@@ -66,14 +67,15 @@ version: 1.0
 ### Basic Communication
 - [ ] Create messaging system
 - [ ] Implement announcements
-- [ ] Set up notifications
+- [x] Set up notifications
 - [ ] Create message queue
+    [x] Achievement notifications
 - [ ] Implement offline message handling
 - [ ] Add basic chat functionality
 
 ### Document System
-- [ ] Create document storage
-- [ ] Implement version control
+- [x] Create document storage
+- [x] Implement version control
 - [ ] Set up document sharing
 - [ ] Create folder organization
 - [ ] Implement document search

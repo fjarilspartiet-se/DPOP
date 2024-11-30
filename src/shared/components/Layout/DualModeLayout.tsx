@@ -309,6 +309,9 @@ const DualModeLayout = ({ children }) => {
           </div>
         </main>
       </div>
+    {session?.user && (
+      <AchievementNotificationManager userId={session.user.id} />
+    )}
     </div>
   );
 };

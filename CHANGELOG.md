@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.2] - 2024-11-30
+
+### Added
+- Journey tracking system with achievement notifications
+- Stage progression visualization and management
+- Achievement system with real-time notifications
+- Complete meadow service implementation
+- Comprehensive API endpoints for meadow operations
+- Journey component system with stage tracking
+
+### Changed
+- Enhanced meadow service with complete CRUD operations
+- Improved stage progression logic with requirements
+- Updated component organization for Journey features
+- Enhanced API structure for achievements
+
+### Fixed
+- Meadow service method inconsistencies
+- API endpoint completion and standardization
+- Component organization in Journey module
+- Service method documentation
+
 ## [0.3.1] - 2024-11-16
 
 ### Added
