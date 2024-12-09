@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Sun, Moon, Users, Flower2, Globe, LayoutDashboard, LogOut, User } from 'lucide-react';
+import { Sun, Moon, Users, Flower2, Globe, LayoutDashboard, FileText, LogOut, User } from 'lucide-react';
 import { useTranslation } from 'next-i18next';
 import { useSession, signOut } from 'next-auth/react';
 import PartyDashboard from '../Party/PartyDashboard';
 import { MovementDashboard } from '../Movement/Dashboard';
+import AchievementNotificationManager from '@/movement/components/Journey/AchievementNotificationManager';
 import Link from 'next/link';
 
 const LANGUAGE_KEY = 'dpop_language';
@@ -283,11 +284,19 @@ const DualModeLayout = ({ children }) => {
                   <Flower2 size={18} />
                   <span>{t('movement.menu.meadows')}</span>
                 </button>
-                <button className={`w-full px-4 py-2 text-left rounded-lg ${theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-700'} ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}>
-                  {t('movement.menu.initiatives')}
+                <button
+                  onClick={() => router.push('/movement/resources')}
+                  className={`w-full px-4 py-2 text-left rounded-lg flex items-center space-x-2 ${
+                    router.pathname === '/movement/resources'
+                      ? 'bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400'
+                      : theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-700'
+                  } ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}
+                >
+                  <FileText size={18} />
+                  <span>{t('movement.menu.resources')}</span>
                 </button>
                 <button className={`w-full px-4 py-2 text-left rounded-lg ${theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-700'} ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}>
-                  {t('movement.menu.resources')}
+                  {t('movement.menu.initiatives')}
                 </button>
                 <button className={`w-full px-4 py-2 text-left rounded-lg ${theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-700'} ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}>
                   {t('movement.menu.community')}
@@ -302,16 +311,18 @@ const DualModeLayout = ({ children }) => {
 
         {/* Main Content */}
         <main className="flex-1 p-6 overflow-auto">
-          <div className={`max-w-7xl mx-auto ${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>
-            {children || (
-              mode === 'party' ? <PartyDashboard /> : <MovementDashboard />
-            )}
-          </div>
+          {mounted && (
+            <div className={`max-w-7xl mx-auto ${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>
+              {children || (
+                mode === 'party' ? <PartyDashboard /> : <MovementDashboard />
+              )}
+            </div>
+          )}
         </main>
       </div>
-    {session?.user && (
-      <AchievementNotificationManager userId={session.user.id} />
-    )}
+      {mounted && session?.user && (
+        <AchievementNotificationManager userId={session.user.id} />
+      )}
     </div>
   );
 };

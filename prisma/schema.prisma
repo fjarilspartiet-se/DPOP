@@ -9,8 +9,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Core Fluid Movement Models
-
+// Enums
 enum LifeStage {
   FLOWER      // Visitor from different ideology/background
   EGG         // New member
@@ -26,75 +25,6 @@ enum ButterflyRole {
   STEWARD     // Maintains meadow spaces
 }
 
-model Meadow {
-  id           String             @id @default(cuid())
-  name         String             @unique // Add unique constraint
-  description  String?
-  status       MeadowStatus
-  type         MeadowType
-  createdAt    DateTime           @default(now())
-  updatedAt    DateTime           @updatedAt
-  participants MeadowParticipant[]
-  resources    MeadowResource[]
-
-  @@map("meadows")
-}
-
-model MeadowParticipant {
-  id            String           @id @default(cuid())
-  meadowId      String
-  nickname      String?          // Optional - for anonymous participants
-  lifeStage     LifeStage       @default(FLOWER)
-  butterflyRole ButterflyRole?  // Only for BUTTERFLY stage
-  joinedAt      DateTime        @default(now())
-  lastActive    DateTime        @default(now())
-  
-  // Stage progression tracking
-  stageHistory  StageTransition[]
-  
-  // Relations
-  meadow        Meadow          @relation(fields: [meadowId], references: [id])
-  
-  // User relation
-  userId        String?         @unique
-  user          User?           @relation(fields: [userId], references: [id])
-
-  @@map("meadow_participants")
-}
-
-model StageTransition {
-  id          String    @id @default(cuid())
-  userId      String
-  fromStage   LifeStage
-  toStage     LifeStage
-  reason      String?
-  createdAt   DateTime  @default(now())
-  
-  // Relations
-  user        User      @relation(fields: [userId], references: [id])
-
-  @@map("stage_transitions")
-}
-
-model MeadowResource {
-  id          String      @id @default(cuid())
-  meadowId    String
-  type        ResourceType
-  title       String
-  content     Json
-  minStage    LifeStage  @default(FLOWER)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-
-  // Relations
-  meadow      Meadow      @relation(fields: [meadowId], references: [id])
-
-  // Add unique constraint for title within a meadow
-  @@unique([meadowId, title])
-  @@map("meadow_resources")
-}
-
-// Enums for Fluid Movement
 enum MeadowStatus {
   PLANNED
   ACTIVE
@@ -110,37 +40,22 @@ enum MeadowType {
   CELEBRATION  // Community celebration
 }
 
-enum ParticipantRole {
-  VISITOR      // Anonymous/first-time participant
-  FRIEND       // Regular participant
-  CONTRIBUTOR  // Active contributor
-  GUIDE        // Experienced member who helps others
-}
-
-enum StewardRole {
-  HOST         // Manages meadow gatherings
-  MENTOR       // Guides new participants
-  GUARDIAN     // Ensures safety and positive atmosphere
-}
-
-enum DiscussionStatus {
-  ACTIVE
-  RESOLVED
-  ARCHIVED
-}
-
 enum ResourceType {
-  GUIDE        // How-to guides
-  STORY        // Movement stories and experiences
-  TOOL         // Tools and templates
-  MEDIA        // Images, videos, etc.
+  GUIDE       // How-to guides
+  STORY       // Movement stories and experiences
+  TOOL        // Tools and templates
+  TEMPLATE    // Reusable templates
+  DOCUMENT    // General documents
+  MEDIA       // Images, videos, etc.
+  LINK        // External links
 }
 
 enum AccessLevel {
-  PUBLIC       // Available to all
-  FRIEND       // Available to registered friends
-  CONTRIBUTOR  // Available to active contributors
-  STEWARD      // Available to stewards only
+  PUBLIC      // Available to all
+  MEMBER      // Available to registered members
+  CONTRIBUTOR // Available to active contributors
+  STEWARD     // Available to stewards only
+  PRIVATE     // Available only to creator
 }
 
 enum AchievementType {
@@ -150,33 +65,114 @@ enum AchievementType {
   MILESTONE
 }
 
-model Achievement {
-  id          String          @id @default(cuid())
+// Core Models
+model Meadow {
+  id           String             @id @default(cuid())
+  name         String             @unique
+  description  String?
+  status       MeadowStatus
+  type         MeadowType
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  
+  // Relations
+  participants MeadowParticipant[]
+  resources    Resource[]
+
+  @@map("meadows")
+}
+
+model MeadowParticipant {
+  id            String           @id @default(cuid())
+  meadowId      String
+  nickname      String?          // Optional - for anonymous participants
+  lifeStage     LifeStage       @default(FLOWER)
+  butterflyRole ButterflyRole?  // Only for BUTTERFLY stage
+  joinedAt      DateTime        @default(now())
+  lastActive    DateTime        @default(now())
+  
+  // Relations
+  meadow        Meadow          @relation(fields: [meadowId], references: [id])
+  stageHistory  StageTransition[]
+  userId        String?         @unique
+  user          User?           @relation(fields: [userId], references: [id])
+
+  @@map("meadow_participants")
+}
+
+model StageTransition {
+  id            String    @id @default(cuid())
+  fromStage     LifeStage
+  toStage       LifeStage
+  reason        String?
+  createdAt     DateTime  @default(now())
+  
+  // Relations
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  participantId String?
+  participant   MeadowParticipant? @relation(fields: [participantId], references: [id])
+
+  @@index([userId])
+  @@index([participantId])
+}
+
+model Resource {
+  id          String        @id @default(cuid())
   title       String
   description String
-  type        AchievementType
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
+  type        ResourceType
+  content     Json         // Flexible content storage
+  categories  String[]
+  stage       LifeStage?
+  access      AccessLevel  @default(PUBLIC)
+  metadata    Json
+  views       Int          @default(0)
+  shares      Int          @default(0)
   
-  // Requirements for earning
-  requirements Json
+  // Relations
+  authorId    String
+  author      User         @relation(fields: [authorId], references: [id])
+  meadowId    String?
+  meadow      Meadow?      @relation(fields: [meadowId], references: [id])
   
-  // Track who earned it
+  // Timestamps
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@unique([meadowId, title])
+  @@index([type])
+  @@index([categories])
+  @@index([stage])
+  @@index([authorId])
+  @@index([meadowId])
+}
+
+model Achievement {
+  id              String            @id @default(cuid())
+  title           String
+  description     String
+  type            AchievementType
+  requirements    Json
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  
+  // Relations
   userAchievements UserAchievement[]
 
   @@map("achievements")
 }
 
 model UserAchievement {
-  id            String     @id @default(cuid())
+  id            String      @id @default(cuid())
   userId        String
   achievementId String
-  earnedAt      DateTime   @default(now())
-  progress      Int        @default(0)  // 0-100%
+  earnedAt      DateTime    @default(now())
+  progress      Int         @default(0)  // 0-100%
   
   // Relations
-  user        User        @relation(fields: [userId], references: [id])
-  achievement Achievement @relation(fields: [achievementId], references: [id])
+  user          User        @relation(fields: [userId], references: [id])
+  achievement   Achievement @relation(fields: [achievementId], references: [id])
 
   @@unique([userId, achievementId])
   @@map("user_achievements")
@@ -214,23 +210,24 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  passwordHash  String?
-  accounts      Account[]
-  sessions      Session[]
-  participant   MeadowParticipant?
-  
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id              String    @id @default(cuid())
+  name            String?
+  email           String?   @unique
+  emailVerified   DateTime?
+  image           String?
+  passwordHash    String?
+  currentStage    LifeStage @default(EGG)
+  stageUpdatedAt  DateTime  @default(now())
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
+  // Relations
+  accounts        Account[]
+  sessions        Session[]
+  participant     MeadowParticipant?
   achievements    UserAchievement[]
-  stageHistory   StageTransition[]
-  currentStage   LifeStage        @default(EGG)
-  stageUpdatedAt DateTime         @default(now())
+  stageTransitions StageTransition[]
+  resources       Resource[]
 
   @@map("users")
 }

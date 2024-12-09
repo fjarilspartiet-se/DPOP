@@ -322,5 +322,48 @@
     "larvae": "Larvae",
     "pupa": "Pupa",
     "butterfly": "Butterfly"
+  },
+  "resources": {
+    "title": "Resources",
+    "create": "Create Resource",
+    "edit": "Edit Resource",
+    "form": {
+      "title": "Title",
+      "description": "Description",
+      "type": "Resource Type",
+      "categories": "Categories",
+      "addCategory": "Add a category",
+      "stage": "Stage Requirement",
+      "access": "Access Level",
+      "content": "Content",
+      "uploadInstructions": "Drop files here or click to upload",
+      "enterUrl": "Enter URL",
+      "enterContent": "Enter content",
+      "noStageRequirement": "No stage requirement"
+    },
+    "types": {
+      "guide": "Guide",
+      "story": "Story",
+      "tool": "Tool",
+      "template": "Template",
+      "document": "Document",
+      "media": "Media",
+      "link": "Link"
+    },
+    "access": {
+      "public": "Public",
+      "member": "Members Only",
+      "contributor": "Contributors",
+      "steward": "Stewards Only",
+      "private": "Private"
+    },
+    "errors": {
+      "titleRequired": "Title is required",
+      "descriptionRequired": "Description is required",
+      "categoriesRequired": "At least one category is required",
+      "uploadFailed": "File upload failed",
+      "fileTooLarge": "File is too large (max 10MB)",
+      "invalidFileType": "File type not supported"
+    }
   }
 }

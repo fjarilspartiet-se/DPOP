@@ -9,6 +9,7 @@ import MeadowsPanel from './Dashboard/MeadowsPanel';
 import InitiativesPanel from './Dashboard/InitiativesPanel';
 import CommunityPanel from './Dashboard/CommunityPanel';
 import JourneyPanel from './Dashboard/JourneyPanel';
+import ResourcesPanel from './Dashboard/ResourcesPanel';
 
 const mockStats = {
   activeMeadows: 12,
@@ -51,6 +52,7 @@ const MovementDashboard = () => {
         <div className="space-y-6">
           <MeadowsPanel />
           <InitiativesPanel />
+          <ResourcesPanel />
         </div>
         
         {/* Right Column */}

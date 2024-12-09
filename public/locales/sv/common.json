@@ -321,5 +321,48 @@
     "larvae": "Larv",
     "pupa": "Puppa",
     "butterfly": "Fjäril"
+  },
+  "resources": {
+    "title": "Resurser",
+    "create": "Skapa resurs",
+    "edit": "Redigera resurs",
+    "form": {
+      "title": "Titel",
+      "description": "Beskrivning",
+      "type": "Resurstyp",
+      "categories": "Kategorier",
+      "addCategory": "Lägg till kategori",
+      "stage": "Stadiekrav",
+      "access": "Åtkomstnivå",
+      "content": "Innehåll",
+      "uploadInstructions": "Släpp filer här eller klicka för att ladda upp",
+      "enterUrl": "Ange URL",
+      "enterContent": "Ange innehåll",
+      "noStageRequirement": "Inget stadiekrav"
+    },
+    "types": {
+      "guide": "Guide",
+      "story": "Berättelse",
+      "tool": "Verktyg",
+      "template": "Mall",
+      "document": "Dokument",
+      "media": "Media",
+      "link": "Länk"
+    },
+    "access": {
+      "public": "Offentlig",
+      "member": "Endast medlemmar",
+      "contributor": "Bidragsgivare",
+      "steward": "Endast förvaltare",
+      "private": "Privat"
+    },
+    "errors": {
+      "titleRequired": "Titel krävs",
+      "descriptionRequired": "Beskrivning krävs",
+      "categoriesRequired": "Minst en kategori krävs",
+      "uploadFailed": "Filuppladdning misslyckades",
+      "fileTooLarge": "Filen är för stor (max 10MB)",
+      "invalidFileType": "Filtypen stöds inte"
+    }
   }
 }
