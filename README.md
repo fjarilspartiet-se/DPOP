@@ -12,19 +12,10 @@ DPOP is a decentralized platform designed to support both political parties and 
 - **Inclusive Design**: Universal accessibility without special adaptations for different groups
 - **Hybrid Operations**: Seamless integration of digital and physical activities
 
-## Latest Updates (v0.3.2)
+## Latest Updates (v0.3.3)
 
 ### New Features
-- Complete journey tracking system
-  - Achievement notifications
-  - Stage progression visualization
-  - Real-time achievement updates
-  - Comprehensive meadow operations
-- Enhanced UI components
-  - Journey visualization
-  - Achievement notifications
-  - Stage progression display
-- Improved service layer
+- Voting system
 
 ### Core Features
 - Authentication system with social login support
@@ -46,6 +37,7 @@ DPOP is a decentralized platform designed to support both political parties and 
 ✅ Meadow management interface
 ✅ Journey tracking system
 ✅ Achievement notifications
+✅ Voting system
 
 ### In Progress
 🚧 Real-time updates
@@ -295,21 +287,29 @@ DPOP
 │   │   │   │   │   ├── [id]
 │   │   │   │   │   │   └── seen.ts
 │   │   │   │   │   └── new.ts
-│   │   │   │   └── meadows
+│   │   │   │   ├── meadows
+│   │   │   │   │   ├── [id]
+│   │   │   │   │   │   ├── complete.ts
+│   │   │   │   │   │   ├── join.ts
+│   │   │   │   │   │   └── leave.ts
+│   │   │   │   │   ├── [id].ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── resources
 │   │   │   │       ├── [id]
-│   │   │   │       │   ├── complete.ts
-│   │   │   │       │   ├── join.ts
-│   │   │   │       │   └── leave.ts
+│   │   │   │       │   └── share.ts
 │   │   │   │       ├── [id].ts
 │   │   │   │       └── index.ts
-│   │   │   └── party
+│   │   │   ├── party
+│   │   │   └── upload.ts
 │   │   ├── _app.tsx
 │   │   ├── auth
 │   │   │   ├── register.tsx
 │   │   │   └── signin.tsx
 │   │   ├── index.tsx
 │   │   ├── movement
-│   │   │   └── meadows
+│   │   │   ├── meadows
+│   │   │   │   └── index.tsx
+│   │   │   └── resources
 │   │   │       └── index.tsx
 │   │   └── party
 │   ├── party
@@ -324,7 +324,9 @@ DPOP
 │   │   ├── achievementHandlers.ts
 │   │   ├── achievementService.ts
 │   │   ├── achievementTriggers.ts
+│   │   ├── fileUploadService.ts
 │   │   ├── meadowService.ts
+│   │   ├── resourceService.ts
 │   │   └── stageService.ts
 │   ├── shared
 │   │   ├── components
@@ -343,8 +345,13 @@ DPOP
 │   │   │   │   │   ├── InitiativesPanel.tsx
 │   │   │   │   │   ├── JourneyPanel.tsx
 │   │   │   │   │   ├── MeadowsPanel.tsx
+│   │   │   │   │   ├── ResourcesPanel.tsx
 │   │   │   │   │   └── StatsOverview.tsx
 │   │   │   │   ├── MovementDashboard.tsx
+│   │   │   │   ├── Resources
+│   │   │   │   │   ├── ResourceCreationFormContent.tsx
+│   │   │   │   │   ├── ResourceCreationForm.tsx
+│   │   │   │   │   └── ResourceLibrary.tsx
 │   │   │   │   └── WelcomeMeadow.tsx
 │   │   │   └── Party
 │   │   │       ├── Dashboard

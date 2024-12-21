@@ -65,6 +65,20 @@ enum AchievementType {
   MILESTONE
 }
 
+enum VoteType {
+  SIMPLE      // Simple yes/no voting
+  RANKED      // Ranked choice voting
+  WEIGHTED    // Weighted voting
+  APPROVAL    // Approval voting (select multiple)
+}
+
+enum VoteStatus {
+  DRAFT       // Being prepared
+  ACTIVE      // Currently accepting votes
+  CLOSED      // Voting period ended
+  ARCHIVED    // Processed and archived
+}
+
 // Core Models
 model Meadow {
   id           String             @id @default(cuid())
@@ -178,6 +192,61 @@ model UserAchievement {
   @@map("user_achievements")
 }
 
+model Proposal {
+  id          String      @id @default(cuid())
+  title       String
+  description String      @db.Text
+  content     Json        // Flexible content storage
+  authorId    String
+  author      User        @relation(fields: [authorId], references: [id])
+  status      String      // draft, review, voting, approved, rejected
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  votes       Vote[]
+  comments    Comment[]
+  
+  // Voting configuration
+  voteType    VoteType    @default(SIMPLE)
+  voteStatus  VoteStatus  @default(DRAFT)
+  startDate   DateTime?   // When voting begins
+  endDate     DateTime?   // When voting ends
+  quorum      Int?        // Minimum required votes
+  threshold   Float?      // Required percentage to pass
+  
+  // Results
+  result      Json?       // Stored vote results
+  closedAt    DateTime?   // When voting was closed
+
+  @@map("proposals")
+}
+
+model Vote {
+  id          String    @id @default(cuid())
+  proposalId  String
+  proposal    Proposal  @relation(fields: [proposalId], references: [id])
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  choice      Json      // Flexible vote storage for different vote types
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([proposalId, userId]) // One vote per user per proposal
+  @@map("votes")
+}
+
+model Comment {
+  id          String    @id @default(cuid())
+  proposalId  String
+  proposal    Proposal  @relation(fields: [proposalId], references: [id])
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  content     String    @db.Text
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("comments")
+}
+
 // Auth Models
 model Account {
   id                String  @id @default(cuid())
@@ -228,6 +297,10 @@ model User {
   achievements    UserAchievement[]
   stageTransitions StageTransition[]
   resources       Resource[]
+
+  proposals   Proposal[]
+  votes       Vote[]
+  comments    Comment[]
 
   @@map("users")
 }

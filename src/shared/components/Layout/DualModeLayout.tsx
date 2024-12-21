@@ -240,12 +240,27 @@ const DualModeLayout = ({ children }) => {
                 <h3 className={`px-4 py-2 text-sm font-semibold ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'}`}>
                   {t('party.menu.title')}
                 </h3>
-                <button className={`w-full px-4 py-2 text-left rounded-lg flex items-center space-x-2 ${theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-700'} ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}>
+                <button
+                  onClick={() => router.push('/party/dashboard')}
+                  className={`w-full px-4 py-2 text-left rounded-lg flex items-center space-x-2 ${
+                    router.pathname === '/party/dashboard'
+                      ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                      : theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-700'
+                  } ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}
+                >
                   <LayoutDashboard size={18} />
                   <span>{t('party.menu.dashboard')}</span>
                 </button>
-                <button className={`w-full px-4 py-2 text-left rounded-lg ${theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-700'} ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}>
-                  {t('party.menu.proposals')}
+                <button
+                  onClick={() => router.push('/party/proposals')}
+                  className={`w-full px-4 py-2 text-left rounded-lg flex items-center space-x-2 ${
+                    router.pathname.startsWith('/party/proposals')
+                      ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                      : theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-700'
+                  } ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}
+                >
+                  <FileText size={18} />
+                  <span>{t('party.menu.proposals')}</span>
                 </button>
                 <button className={`w-full px-4 py-2 text-left rounded-lg ${theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-700'} ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}>
                   {t('party.menu.committees')}
