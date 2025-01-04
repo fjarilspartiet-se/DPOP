@@ -131,13 +131,29 @@ model StageTransition {
   @@index([participantId])
 }
 
+model ResourceCategory {
+  id          String        @id @default(cuid())
+  name        String
+  description String?
+  parentId    String?
+  parent      ResourceCategory?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children    ResourceCategory[] @relation("CategoryHierarchy")
+  resources   Resource[]       @relation("ResourceCategories")
+  createdBy   String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@unique([name])
+  @@index([parentId])
+}
+
 model Resource {
   id          String        @id @default(cuid())
   title       String
   description String
   type        ResourceType
   content     Json         // Flexible content storage
-  categories  String[]
+  categories  ResourceCategory[] @relation("ResourceCategories")
   stage       LifeStage?
   access      AccessLevel  @default(PUBLIC)
   metadata    Json
@@ -156,7 +172,6 @@ model Resource {
 
   @@unique([meadowId, title])
   @@index([type])
-  @@index([categories])
   @@index([stage])
   @@index([authorId])
   @@index([meadowId])

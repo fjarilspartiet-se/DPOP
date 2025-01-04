@@ -8,11 +8,11 @@ export interface CreateResourceInput {
   description: string;
   type: ResourceType;
   content: Record<string, any>;  // JSON content
-  categories: string[];
+  categoryIds: string[];        // Added for categories
   stage?: LifeStage;
   access?: AccessLevel;
   metadata?: Record<string, any>;
-  meadowId?: string;  // Optional meadow association
+  meadowId?: string;
 }
 
 export interface UpdateResourceInput extends Partial<CreateResourceInput> {
@@ -39,17 +39,34 @@ export const resourceService = {
       }
     }
 
+    // Verify categories exist
+    if (data.categoryIds?.length > 0) {
+      const categories = await prisma.resourceCategory.findMany({
+        where: { id: { in: data.categoryIds } }
+      });
+
+      if (categories.length !== data.categoryIds.length) {
+        throw new Error('One or more categories not found');
+      }
+    }
+
     return await prisma.resource.create({
       data: {
-        ...data,
+        title: data.title,
+        description: data.description,
+        type: data.type,
+        content: data.content,
         access: data.access ?? AccessLevel.PUBLIC,
         metadata: data.metadata ?? {},
-        content: data.content,
+        stage: data.stage,
         author: {
           connect: { id: userId }
         },
         meadow: data.meadowId ? {
           connect: { id: data.meadowId }
+        } : undefined,
+        categories: data.categoryIds?.length > 0 ? {
+          connect: data.categoryIds.map(id => ({ id }))
         } : undefined
       },
       include: {
@@ -65,6 +82,12 @@ export const resourceService = {
             id: true,
             name: true,
             type: true
+          }
+        },
+        categories: {
+          select: {
+            id: true,
+            name: true
           }
         }
       }
@@ -85,6 +108,17 @@ export const resourceService = {
       throw new Error('Not authorized to update resource');
     }
 
+    // Verify new categories if provided
+    if (data.categoryIds?.length > 0) {
+      const categories = await prisma.resourceCategory.findMany({
+        where: { id: { in: data.categoryIds } }
+      });
+
+      if (categories.length !== data.categoryIds.length) {
+        throw new Error('One or more categories not found');
+      }
+    }
+
     return await prisma.resource.update({
       where: { id: data.id },
       data: {
@@ -92,11 +126,13 @@ export const resourceService = {
         description: data.description,
         type: data.type,
         content: data.content,
-        categories: data.categories,
         stage: data.stage,
         access: data.access,
         metadata: data.metadata,
         meadowId: data.meadowId,
+        categories: data.categoryIds ? {
+          set: data.categoryIds.map(id => ({ id }))
+        } : undefined,
         updatedAt: new Date()
       },
       include: {
@@ -112,6 +148,12 @@ export const resourceService = {
             id: true,
             name: true,
             type: true
+          }
+        },
+        categories: {
+          select: {
+            id: true,
+            name: true
           }
         }
       }
@@ -166,7 +208,7 @@ export const resourceService = {
 
   async listResources(params?: {
     type?: ResourceType;
-    categories?: string[];
+    categoryIds?: string[];
     stage?: LifeStage;
     access?: AccessLevel;
     meadowId?: string;
@@ -178,9 +220,11 @@ export const resourceService = {
       where.type = params.type;
     }
 
-    if (params?.categories?.length) {
+    if (params?.categoryIds?.length) {
       where.categories = {
-        hasEvery: params.categories
+        some: {
+          id: { in: params.categoryIds }
+        }
       };
     }
 
@@ -218,6 +262,12 @@ export const resourceService = {
             id: true,
             name: true,
             type: true
+          }
+        },
+        categories: {
+          select: {
+            id: true,
+            name: true
           }
         }
       },

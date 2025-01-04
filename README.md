@@ -12,10 +12,12 @@ DPOP is a decentralized platform designed to support both political parties and 
 - **Inclusive Design**: Universal accessibility without special adaptations for different groups
 - **Hybrid Operations**: Seamless integration of digital and physical activities
 
-## Latest Updates (v0.3.3)
+## Latest Updates (v0.3.4)
 
 ### New Features
-- Voting system
+- Resource category management system
+- Category hierarchy support
+- Enhanced resource filtering
 
 ### Core Features
 - Authentication system with social login support
@@ -25,6 +27,8 @@ DPOP is a decentralized platform designed to support both political parties and 
 - Welcome meadow onboarding
 - Journey tracking system
 - Achievement system
+- Voting system
+- Resource categories
 
 ## Development Status
 
@@ -38,12 +42,14 @@ DPOP is a decentralized platform designed to support both political parties and 
 ✅ Journey tracking system
 ✅ Achievement notifications
 ✅ Voting system
+✅ Resource category management
 
 ### In Progress
 🚧 Real-time updates
 🚧 Initiative management
-🚧 Community features
 🚧 Resource sharing
+🚧 Community features
+
 
 ### Planned
 📋 Initiative management

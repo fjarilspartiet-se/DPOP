@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.4] - 2024-01-04
+
+### Added
+- Resource category management system
+- Category hierarchy with parent-child relationships
+- Category filtering for resources
+- Database migrations for resource categories
+- Initial category seeding system
+- Comprehensive API endpoints for category operations
+- Updated resource service with category support
+
+### Changed
+- Enhanced resource queries to support categories
+- Improved resource creation and update operations
+- Updated database schema with category relationships
+- Modified resource API endpoints for category handling
+
 ## [0.3.3] - 2024-12-21
 
 ### Added

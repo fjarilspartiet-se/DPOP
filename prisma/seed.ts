@@ -5,6 +5,7 @@ import pkg from 'bcryptjs';
 const { hash } = pkg;
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { seedCategories } from './seeds/categories.js';
 
 // ES Module fix for __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -16,27 +17,27 @@ async function main() {
   try {
     // Create admin user
     const adminPassword = await hash('admin123', 12);
-    const admin = await prisma.member.upsert({
+    const admin = await prisma.user.upsert({
       where: { email: 'admin@dpop.dev' },
       update: {},
       create: {
         email: 'admin@dpop.dev',
         name: 'Admin User',
         passwordHash: adminPassword,
-        role: 'ADMIN',
+        currentStage: 'BUTTERFLY',
       },
     });
 
-    // Create test member
+    // Create test user
     const memberPassword = await hash('member123', 12);
-    const member = await prisma.member.upsert({
+    const member = await prisma.user.upsert({
       where: { email: 'member@dpop.dev' },
       update: {},
       create: {
         email: 'member@dpop.dev',
         name: 'Test Member',
         passwordHash: memberPassword,
-        role: 'MEMBER',
+        currentStage: 'EGG',
       },
     });
 
@@ -45,18 +46,24 @@ async function main() {
       data: {
         title: 'Test Proposal',
         description: 'This is a test proposal for development purposes.',
-        status: 'VOTING',
+        status: 'draft',
+        voteStatus: 'DRAFT',
+        authorId: admin.id,
+        content: {},
       },
     });
 
     // Create test vote
     await prisma.vote.create({
       data: {
-        memberId: member.id,
+        userId: member.id,
         proposalId: proposal.id,
-        choice: 'YES',
+        choice: { vote: true },
       },
     });
+
+    // Seed resource categories
+    await seedCategories();
 
     console.log('Seed data created:', { admin, member, proposal });
   } catch (error) {
