@@ -2,7 +2,35 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.3.4] - 2024-01-04
+## [0.3.5] - 2025-01-18
+
+### Added
+- Real-time messaging system with WebSocket support
+  - New WebSocket service for handling real-time communication
+  - WebSocket server implementation with keep-alive mechanism
+  - Message typing indicators and read receipts
+  - Support for file attachments in messages
+- Community components
+  - MemberDirectory: Browse and interact with community members
+  - MessageComposer: Rich text editor for composing messages with attachments
+  - MessageList: Overview of conversations with real-time updates
+  - MessageThread: Detailed conversation view with real-time messaging
+- Improved user experience
+  - Real-time achievement notifications
+  - Live activity updates in MovementDashboard
+  - Typing indicators in chat
+  - Message read receipts
+  - Offline message queuing and retry
+### Enhanced
+- MovementDashboard now includes real-time activity updates
+- AchievementNotificationManager now uses WebSocket for instant notifications
+### Technical
+- Added WebSocket service with automatic reconnection
+- Implemented keep-alive mechanism for stable connections
+- Added TypeScript interfaces for WebSocket messages
+- Improved error handling for network issues
+
+## [0.3.4] - 2025-01-04
 
 ### Added
 - Resource category management system

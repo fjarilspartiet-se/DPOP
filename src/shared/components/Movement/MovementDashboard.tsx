@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { StatsOverview } from './Dashboard';
@@ -10,6 +11,7 @@ import InitiativesPanel from './Dashboard/InitiativesPanel';
 import CommunityPanel from './Dashboard/CommunityPanel';
 import JourneyPanel from './Dashboard/JourneyPanel';
 import ResourcesPanel from './Dashboard/ResourcesPanel';
+import { useWebSocket } from '@/services/websocketService';
 
 const mockStats = {
   activeMeadows: 12,
@@ -22,10 +24,51 @@ const MovementDashboard = () => {
   const { t } = useTranslation('common');
   const router = useRouter();
   const { data: session } = useSession();
+  const [stats, setStats] = useState(mockStats);
+  const { subscribe } = useWebSocket(session?.user?.id || '');
 
   const handleMetricClick = (metric: string) => {
     console.log(`Navigating to /${metric}`);
   };
+
+  useEffect(() => {
+    const unsubscribeStats = subscribe('stats', (payload) => {
+      setStats(prev => ({
+        ...prev,
+        ...payload
+      }));
+    });
+
+    // Subscribe to activity updates
+    const unsubscribeActivity = subscribe('activity', (payload) => {
+      // Update relevant panels based on activity type
+      switch (payload.type) {
+        case 'meadow':
+          setStats(prev => ({
+            ...prev,
+            activeMeadows: payload.count
+          }));
+          break;
+        case 'initiative':
+          setStats(prev => ({
+            ...prev,
+            activeInitiatives: payload.count
+          }));
+          break;
+        case 'member':
+          setStats(prev => ({
+            ...prev,
+            communityMembers: payload.count
+          }));
+          break;
+      }
+    });
+
+    return () => {
+      unsubscribeStats();
+      unsubscribeActivity();
+    };
+  }, [session?.user?.id, subscribe]);
 
   return (
     <div className="space-y-6">

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import AchievementNotification from './AchievementNotification';
+import { useWebSocket } from '@/services/websocketService';
 
 interface Achievement {
   id: string;
@@ -17,8 +18,15 @@ interface AchievementNotificationManagerProps {
 const AchievementNotificationManager = ({ userId }: AchievementNotificationManagerProps) => {
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [currentAchievement, setCurrentAchievement] = useState<Achievement | null>(null);
+  const { subscribe } = useWebSocket(userId);
 
   useEffect(() => {
+    // Subscribe to real-time achievement notifications
+    const unsubscribe = subscribe('achievement', (payload) => {
+      setAchievements(prev => [...prev, payload]);
+    });
+
+    // Initial check for offline achievements
     const checkNewAchievements = async () => {
       try {
         const response = await fetch('/api/movement/achievements/new');
@@ -33,10 +41,12 @@ const AchievementNotificationManager = ({ userId }: AchievementNotificationManag
       }
     };
 
-    // Check for new achievements periodically
-    const interval = setInterval(checkNewAchievements, 30000);
-    return () => clearInterval(interval);
-  }, [userId]);
+    checkNewAchievements();
+    
+    return () => {
+      unsubscribe();
+    };
+  }, [userId, subscribe]);
 
   useEffect(() => {
     if (achievements.length > 0 && !currentAchievement) {

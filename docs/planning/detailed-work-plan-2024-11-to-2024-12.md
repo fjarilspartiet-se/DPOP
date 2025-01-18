@@ -59,7 +59,7 @@
 - [x] Implement sharing interface
 - [x] Add category management
 - [x] Create search and filter system
-- [ ] Add resource preview features
+- [x] Add resource preview features
 
 ### Week 5 (December 14)
 **Focus: Community Features**
@@ -70,11 +70,11 @@
 - Session time: 2-3 hours
 
 **Technical Goals:**
-- [ ] Create MemberDirectory component
+- [x] Create MemberDirectory component
 - [ ] Implement basic messaging
 - [ ] Add group creation interface
 - [ ] Create interaction tracking
-- [ ] Implement notification system
+- [ ] Implement notification system 
 
 ### Week 6 (December 21)
 **Focus: Integration and Polish**

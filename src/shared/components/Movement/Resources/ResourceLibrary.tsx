@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { Book, Search, Tags, Filter, Plus, Share2, Eye } from 'lucide-react';
 import Card from '@/shared/components/common/Card';
+import ResourcePreview from './ResourcePreview';
 
 interface Resource {
   id: string;
@@ -69,6 +70,7 @@ const ResourceLibrary: React.FC<ResourceLibraryProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [previewResource, setPreviewResource] = useState<Resource | null>(null);
 
   // Get unique categories from resources
   const allCategories = Array.from(
@@ -217,7 +219,10 @@ const ResourceLibrary: React.FC<ResourceLibraryProps> = ({
                 </div>
                 <div className="flex gap-2">
                   <button
-                    onClick={() => onResourceView?.(resource.id)}
+                    onClick={() => {
+                      onResourceView?.(resource.id);
+                      setPreviewResource(resource);
+                    }}
                     className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                   >
                     <Eye className="w-4 h-4" />
@@ -234,6 +239,14 @@ const ResourceLibrary: React.FC<ResourceLibraryProps> = ({
           );
         })}
       </div>
+      {/* Resource Preview Modal */}
+      {previewResource && (
+        <ResourcePreview
+          resource={previewResource}
+          onClose={() => setPreviewResource(null)}
+          onShare={onResourceShare}
+        />
+      )}
     </div>
   );
 };
